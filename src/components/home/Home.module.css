@@ -18,8 +18,8 @@
 }
 
 .slider {
-    margin-top: 4em;
-    margin-bottom: 4em;
+    margin-top: 8em;
+    margin-bottom: 2em;
     position: relative;
     width: 30em;
     height: 20em;
@@ -46,6 +46,10 @@
     height: 20em;
     object-fit: cover;
     transition: 2s;
+}
+
+.imageContainer:hover .sliderImage {
+	transform: translateY(-5em) scale(1.2);
 }
 
 @keyframes rotate {
