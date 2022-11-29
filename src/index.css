@@ -1,13 +1,15 @@
-html, body {
-	height: 100%;
+	html, body {
 	margin: 0;
-	overflow: auto;
+	padding: 0;
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 	  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
 	  sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: #42424218;
+	background-color: white;
   }
   
   code {

@@ -1,10 +1,11 @@
 import React from 'react';
 import classes from './NotFound.module.css';
-import Logo from '../logos/not-found.png';
+import Logo from '../images/not-found.png';
 
 /**
  * @name NotFound
  * @description Displays 404 page
+ * @returns NotFound Page
  */
 const NotFound = () => (
   <div className={classes.pageContainer} data-testid="container">
