@@ -146,7 +146,12 @@
 	border-radius: 100%;
 	margin-top: 13em;
 	transform-style: preserve-3d;
-	transform: rotateZ(180deg);
+    transition: 2s;
+}
+
+.imageContainer_code:hover .ovalShadow_code {
+	width: 4em;
+	margin-left: 3em;
 }
 
 .imageContainer_code:hover .sliderImage_code {
@@ -178,7 +183,7 @@
     height: 100%;
     transform-origin: center;
     transform-style: preserve-3d;
-    transform: rotateY(calc(var(--i)*72deg)) translateZ(20em);
+    transform: rotateY(calc(var(--i)*72deg)) translateZ(15em);
 }
 
 .sliderImage_tech {
@@ -199,7 +204,12 @@
 	border-radius: 100%;
 	margin-top: 13em;
 	transform-style: preserve-3d;
-	transform: rotateZ(180deg);
+    transition: 2.5s;
+}
+
+.imageContainer_tech:hover .ovalShadow_tech {
+	margin-left: 4em;
+	width: 3em
 }
 
 .imageContainer_tech:hover .sliderImage_tech {
