@@ -27,6 +27,7 @@ const About = () => {
   const [titleIndex, setTitleIndex] = useState(0);
 
   useEffect(() => {
+    // if title is fully visible start to delete text
     if (titleIndex > fullTitle.length && !reverse) {
       setTimeout(() => {
         setReverse(true);
@@ -34,6 +35,7 @@ const About = () => {
       return;
     }
 
+    // if title has been fully deleted start to type again
     if (titleIndex === 0 && reverse) {
       setTimeout(() => {
         setReverse(false);
@@ -42,6 +44,8 @@ const About = () => {
       return;
     }
 
+    // handles removing an index or adding index
+    // to display the text
     setTimeout(() => {
       setTitleIndex(titleIndex + (reverse ? -1 : 1));
     }, (reverse ? 100 : 150));
