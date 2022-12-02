@@ -15,7 +15,7 @@ const App = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" render={() => {}} />
-      <Route exact path="/about-me" render={() => <About />} />
+      <Route exact path="/about" render={() => <About />} />
       <Route render={() => <NotFound />} />
     </Switch>
   </BrowserRouter>

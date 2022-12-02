@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect, useState, useRef
+} from 'react';
 import classes from './About.module.css';
 import Constants from '../../utils/Constants';
 import CPluslogo from '../images/c-plus-plus.png';
@@ -22,9 +24,28 @@ import PicterOfMe from '../images/picture-of-me.jpg';
  * @returns About Page
  */
 const About = () => {
+  const techSliderTitle = useRef(null);
+  const codeSliderTitle = useRef(null);
+  const contactTitle = useRef(null);
+  const [isTechTitleInView, setIsTechTitleInView] = useState(false);
+  const [isCodeTitleInView, setIsCodeTitleInView] = useState(false);
+  const [isContactTitleInView, setIsContactTitleInView] = useState(false);
   const [reverse, setReverse] = useState(false);
   const [fullTitle] = useState(Constants.ABOUT_ME_TITLE);
   const [titleIndex, setTitleIndex] = useState(0);
+  const [contactInfo, setContactInfo] = useState({});
+
+  /**
+   * @name handleChange
+   * @description handles on change event for contact info on the page
+   * @param {Event} event
+   */
+  const handleChange = (event) => {
+    const { value } = event.target;
+    const { id } = event.target;
+
+    setContactInfo({ ...contactInfo, [id]: value });
+  };
 
   useEffect(() => {
     // if title is fully visible start to delete text
@@ -51,27 +72,62 @@ const About = () => {
     }, (reverse ? 100 : 150));
   });
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          switch (entry.target.id) {
+            case 'techSliderTitle':
+              setIsTechTitleInView(true);
+              break;
+            case 'codeSliderTitle':
+              setIsCodeTitleInView(true);
+              break;
+            case 'contactTitle':
+              setIsContactTitleInView(true);
+              break;
+            default:
+          }
+        }
+      });
+    });
+
+    observer.observe(techSliderTitle.current);
+    observer.observe(codeSliderTitle.current);
+    observer.observe(contactTitle.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  });
+
   return (
     <div className={classes.aboutPage}>
       <div className={classes.aboutTitleContainer}>
         <h1 className={classes.aboutTitle}>{fullTitle.substring(0, titleIndex)}</h1>
         <div className={classes.cursor} />
       </div>
-      <div className={classes.descriptionContainer}>
-        <img
-          className={classes.descriptionImage}
-          src={PicterOfMe}
-          alt={Constants.PICTURE_OF_ME_ALT}
-        />
-        <p className={classes.aboutDescription}>{Constants.ABOUT_ME_DESCRIPTION}</p>
-      </div>
-      <div className={classes.descriptionContainer2}>
-        <p className={classes.aboutDescription2}>{Constants.ABOUT_ME_DESCRIPTION2}</p>
-      </div>
-      <div className={classes.descriptionContainer3}>
-        <p className={classes.aboutDescription3}>{Constants.ABOUT_ME_DESCRIPTION3}</p>
-      </div>
-      <h2 className={classes.sliderTitle_tech}>
+      <section className={classes.allDescriptions}>
+        <div className={classes.descriptionContainer}>
+          <img
+            className={classes.descriptionImage}
+            src={PicterOfMe}
+            alt={Constants.PICTURE_OF_ME_ALT}
+          />
+          <p className={classes.aboutDescription}>{Constants.ABOUT_ME_DESCRIPTION}</p>
+        </div>
+        <div className={classes.descriptionContainer2}>
+          <p className={classes.aboutDescription2}>{Constants.ABOUT_ME_DESCRIPTION2}</p>
+        </div>
+        <div className={classes.descriptionContainer3}>
+          <p className={classes.aboutDescription3}>{Constants.ABOUT_ME_DESCRIPTION3}</p>
+        </div>
+      </section>
+      <h2
+        id="techSliderTitle"
+        className={`${classes.hidden} ${isTechTitleInView ? classes.sliderTitle_tech : ''}`}
+        ref={techSliderTitle}
+      >
         <span>
           Frameworks
           <span>&</span>
@@ -118,7 +174,11 @@ const About = () => {
           </span>
         </div>
       </section>
-      <h2 className={classes.sliderTitle_code}>
+      <h2
+        id="codeSliderTitle"
+        className={`${classes.hidden} ${isCodeTitleInView ? classes.sliderTitle_code : ''}`}
+        ref={codeSliderTitle}
+      >
         <span>
           <span>Coding</span>
           Languages
@@ -166,6 +226,56 @@ const About = () => {
             <img className={classes.sliderImage_code} src={PythonLogo} alt={Constants.PYTHON_ALT} />
             <div className={classes.ovalShadow_code} />
           </span>
+        </div>
+      </section>
+      <section className={classes.contactFormContainer}>
+        <div className={classes.contactForm}>
+          <h2
+            id="contactTitle"
+            className={`${classes.hidden} ${isContactTitleInView ? classes.contactTitle : ''}`}
+            ref={contactTitle}
+          >
+            <span>
+              Contact
+            </span>
+          </h2>
+          <div className={classes.contactDescriptionContainer}>
+            <p className={classes.contactDescription}>{Constants.CONTACT_DESCRIPTION}</p>
+          </div>
+          <label className={classes.emailContainer} htmlFor="emailInput">
+            <span className={classes.emailTitle}>Email</span>
+            <input
+              id="email"
+              onChange={handleChange}
+              className={classes.emailInput}
+              type="email"
+              name="emailInput"
+            />
+          </label>
+          <label className={classes.subjectContainer} htmlFor="subjectInput">
+            <span className={classes.subjectTitle}>Subject</span>
+            <input
+              id="subject"
+              onChange={handleChange}
+              className={classes.subjectInput}
+              type="subject"
+              name="subjectInput"
+            />
+          </label>
+          <label className={classes.messageContainer} htmlFor="emailMessage">
+            <span className={classes.messageTitle}>Message</span>
+            <textarea
+              id="message"
+              className={classes.messageInput}
+              onChange={handleChange}
+              name="emailMessage"
+              rows="8"
+              cols="25"
+            />
+          </label>
+          <div className={classes.btnContainer}>
+            <button className={classes.sendEmailBtn} type="button">Send</button>
+          </div>
         </div>
       </section>
     </div>

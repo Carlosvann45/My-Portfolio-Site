@@ -10,7 +10,7 @@ import Logo from '../images/not-found.png';
 const NotFound = () => (
   <div className={classes.pageContainer} data-testid="container">
     <div className={classes.notFound} data-testid="content">
-      <h1> 404 Page Not Found </h1>
+      <h1>Oops! Something went wrong.</h1>
       <h2>Sorry, we were unable to find this page.</h2>
     </div>
     <img src={Logo} alt="Broken Robot" />

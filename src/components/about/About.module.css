@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+.hidden {
+	opacity: 0;
+	filter: blur(5px);
+	transform: translateX(-100%);
+	transition: all 1s;
+	line-height: 1em;
+}
+
 .aboutTitleContainer {
 	margin-top: 2em;
 	display: flex;
@@ -28,8 +36,11 @@
 	animation: blink .6s linear infinite;
 }
 
-.descriptionContainer {
+.allDescriptions {
 	margin: 6em 15em;
+}
+
+.descriptionContainer {
 	margin-bottom: 0em;
 }
 
@@ -55,10 +66,10 @@
 }
 
 .descriptionContainer2 {
-	margin: 4em 15em;
+	margin: 4em 0em;
 	margin-bottom: 1em;;
 	display: flex;
-	justify-content: center;
+	justify-content: cenlefttlefter;
 }
 
 .aboutDescription2 {
@@ -73,7 +84,7 @@
 }
 
 .descriptionContainer3 {
-	margin: 4em 15em;
+	margin: 4em 0em;
 	margin-bottom: 1em;;
 	display: flex;
 	justify-content: center;
@@ -104,9 +115,10 @@
     letter-spacing: .1em;
 	line-height: 1em;
 	text-shadow: -.15em .1em .2em  black;
-	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	transform: translateX(0) rotateY(5deg) rotate(0deg) skew(5deg);
 	
-	animation: showTechTitle 1s linear;
+	opacity: 1;
+	filter: blur(0);
 }
 
 .sliderTitle_tech span span {
@@ -211,9 +223,10 @@
     letter-spacing: .1em;
 	line-height: 1em;
 	text-shadow: -.15em .1em .2em  black;
-	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	transform: translateX(0) rotateY(5deg) rotate(0deg) skew(5deg);
 	
-	animation: showCodeTitle 1s linear;
+	opacity: 1;
+	filter: blur(0);
 }
 
 .sliderTitle_code span span {
@@ -247,7 +260,7 @@
   }
 
 .codeSlider {
-	margin-bottom: 10em;
+	margin-bottom: 4em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -304,6 +317,225 @@
 	transform: translateY(-5em) scale(1.2);
 }
 
+.contactFormContainer {
+	margin-bottom: 4em;
+	width: 100%;
+}
+
+.contactForm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.contactTitle {
+    text-align: center;
+	color: white;
+	margin: 0;
+	margin: 2em auto;
+	margin-bottom: 0em;
+	width: 95%;
+    padding: .5em;
+    font-weight: 700;
+    font-size: 3.75em;
+    letter-spacing: .1em;
+	line-height: 1em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: translateX(0) rotateY(5deg) rotate(0deg) skew(5deg);
+	
+	opacity: 1;
+	filter: blur(0);
+}
+
+.contactTitle span span {
+	display: block;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.contactTitle:before {
+	content: "";
+	display: block;
+	width: 25%;
+	height: 5px;
+	background: white;
+	left: 85px;
+	top: 50%;
+	position: absolute;
+	box-shadow: -.15em .1em .2em  black;
+  }
+  .contactTitle:after {
+	content: "";
+	display: block;
+	width: 25%;
+	height: 5px;
+	background: white;
+	right: 85px;
+	top: 50%;
+	position: absolute;
+	box-shadow: -.1em .1em .1em  black;
+  }
+
+  .contactDescriptionContainer {
+	margin: 4em 30em;
+	display: flex;
+	justify-content: center;
+}
+
+.contactDescription {
+    text-align: center;
+	color: white;
+    font-weight: 700;
+    font-size: 1.5em;
+    letter-spacing: .1em;
+	line-height: 1.5em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+}
+
+  .emailContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+	margin: 0 auto;
+	margin-bottom: 2em;
+  }
+
+  .emailTitle {
+	color: white;
+	margin: 0;
+	width: 95%;
+    padding: .5em;
+	padding-left: 0;
+    font-weight: 700;
+    font-size: 2.5em;
+    letter-spacing: .1em;
+	line-height: 1em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+  }
+
+  .emailInput {
+	font-size: 2em;
+	padding: .2em;
+	border-radius: .25em;
+	box-shadow: -.15em .1em .2em  black;
+  }
+
+  .subjectContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+	margin: 0 auto;
+	margin-bottom: 2em;
+  }
+
+  .subjectTitle {
+	color: white;
+	margin: 0;
+	width: 95%;
+    padding: .5em;
+	padding-left: 0;
+    font-weight: 700;
+    font-size: 2.5em;
+    letter-spacing: .1em;
+	line-height: 1em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+  }
+
+  .subjectInput {
+	font-size: 2em;
+	padding: .2em;
+	border-radius: .25em;
+	box-shadow: -.15em .1em .2em  black;
+  }
+
+  .messageContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+	margin: 0 auto;
+	margin-bottom: 2em;
+  }
+
+  .messageTitle {
+	color: white;
+	margin: 0;
+	width: 95%;
+    padding: .5em;
+	padding-left: 0;
+    font-weight: 700;
+    font-size: 2.5em;
+    letter-spacing: .1em;
+	line-height: 1em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+  }
+
+  .messageInput {
+	font-size: 2.5em;
+	padding: .2em;
+	border-radius: .25em;
+	resize: none;
+	box-shadow: -.15em .1em .2em  black;
+  }
+
+  .messageInput::-webkit-scrollbar {
+	border-radius: .25em;
+	width: 10px;
+  }
+  
+  .messageInput::-webkit-scrollbar-track {
+	border-radius: .25em;
+	background: none;
+  }
+  
+  .messageInput::-webkit-scrollbar-thumb {
+	border-radius: .25em;
+	background: linear-gradient(45deg, purple, darkblue, purple) 0 0 / 1000% no-repeat;
+	animation: move-background 60s ease infinite;
+  }
+
+  .btnContainer {
+	display: flex;
+	justify-content: center;
+	margin-top: 1em;
+  }
+
+  .sendEmailBtn {
+    font-weight: 700;
+    font-size: 2.5em;
+    letter-spacing: .1em;
+	line-height: 1em;
+	text-shadow: -.15em .1em .2em  gray;
+	text-transform: uppercase;
+	font-size: 2em;
+	padding: .2em 3em;
+	border-radius: 2em;
+	background-color: white;
+	box-shadow: -.15em .1em .2em  black;
+  }
+
+  @keyframes move-background {
+	0% {
+		background-position: 30% 0, 0 0;
+	}
+
+	50% {
+		background-position: 70% 100%, 0 0;
+	}
+
+	100% {
+		background-position: 30% 0, 0 0;
+	}
+
+  }
+
 @keyframes blink {
 	0% {
 		opacity: 0;
@@ -313,39 +545,6 @@
 		opacity: 1;
 	}
 	
-}
-
-@keyframes showCodeTitle {
-	0% {
-		opacity: 0;
-		transform: translate(-100%, -50%);
-	}
-
-	50% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-		transform: translate(0%);
-	}
-}
-
-@keyframes showTechTitle {
-	0% {
-		opacity: 0;
-		transform: translate(115%, 50%);
-	}
-
-
-	50% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-		transform: translate(0%);
-	}
 }
 
 @keyframes rotate {
