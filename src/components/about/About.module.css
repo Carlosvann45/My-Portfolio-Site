@@ -2,6 +2,91 @@
     box-sizing: border-box;
 }
 
+.aboutTitleContainer {
+	margin-top: 2em;
+	display: flex;
+	justify-content: center;
+}
+
+.aboutTitle {
+	height: 1.1em;
+    text-align: center;
+	color: white;
+    font-weight: 700;
+    font-size: 3.75em;
+    letter-spacing: .1em;
+	line-height: 1em;
+	
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+
+}
+
+.cursor {
+	border-left: .1em solid white;
+    font-weight: 700;
+    font-size: 3.75em;
+    letter-spacing: .1em;
+	line-height: 1em;
+	box-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	animation: blink .6s linear infinite;
+}
+
+.descriptionContainer {
+	margin: 4em 15em;
+	margin-bottom: 0em;;
+	display: flex;
+	justify-content: center;
+}
+
+.aboutDescription {
+    text-align: center;
+	color: white;
+    font-weight: 700;
+    font-size: 1.5em;
+    letter-spacing: .1em;
+	line-height: 1.5em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+}
+
+.descriptionContainer2 {
+	margin: 4em 15em;
+	margin-bottom: 1em;;
+	display: flex;
+	justify-content: center;
+}
+
+.aboutDescription2 {
+    text-align: center;
+	color: white;
+    font-weight: 700;
+    font-size: 1.5em;
+    letter-spacing: .1em;
+	line-height: 1.5em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+}
+
+.descriptionContainer3 {
+	margin: 4em 15em;
+	margin-bottom: 1em;;
+	display: flex;
+	justify-content: center;
+}
+
+.aboutDescription3 {
+    text-align: center;
+	color: white;
+    font-weight: 700;
+    font-size: 1.5em;
+    letter-spacing: .1em;
+	line-height: 1.5em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+}
+
 .sliderTitle_tech {
     text-align: center;
 	color: white;
@@ -183,7 +268,7 @@
     height: 100%;
     transform-origin: center;
     transform-style: preserve-3d;
-    transform: rotateY(calc(var(--i)*72deg)) translateZ(15em);
+    transform: rotateY(calc(var(--i)*72deg)) translateZ(18em);
 }
 
 .sliderImage_tech {
@@ -214,6 +299,17 @@
 
 .imageContainer_tech:hover .sliderImage_tech {
 	transform: translateY(-5em) scale(1.2);
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+	
 }
 
 @keyframes show-code-title {

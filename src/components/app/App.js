@@ -4,7 +4,7 @@ import {
   BrowserRouter, Route, Switch
 } from 'react-router-dom';
 import NotFound from '../not-found/NotFound';
-import Home from '../home/Home';
+import About from '../about/About';
 
 /**
  * Runs browser router to specific webpage.
@@ -14,7 +14,8 @@ import Home from '../home/Home';
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" render={() => <Home />} />
+      <Route exact path="/" render={() => {}} />
+      <Route exact path="/about-me" render={() => <About />} />
       <Route render={() => <NotFound />} />
     </Switch>
   </BrowserRouter>
