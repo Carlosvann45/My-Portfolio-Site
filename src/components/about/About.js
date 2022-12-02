@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import classes from './About.module.css';
 import Constants from '../../utils/Constants';
@@ -15,11 +14,12 @@ import DotNetLogo from '../images/dot-net.png';
 import PostgresqlLogo from '../images/postgresql.png';
 import ReactLogo from '../images/react.png';
 import SpringBootLogo from '../images/springboot.png';
+import PicterOfMe from '../images/picture-of-me.jpg';
 
 /**
  * @name About
- * @description Displays home page elements like sliders
- * @returns Home Page
+ * @description Displays home page elements like sliders and about description
+ * @returns About Page
  */
 const About = () => {
   const [reverse, setReverse] = useState(false);
@@ -27,22 +27,24 @@ const About = () => {
   const [titleIndex, setTitleIndex] = useState(0);
 
   useEffect(() => {
-    if (titleIndex > fullTitle.length) {
+    if (titleIndex > fullTitle.length && !reverse) {
       setTimeout(() => {
         setReverse(true);
-      }, 100);
+      }, 5000);
       return;
     }
 
-    if (!reverse) {
+    if (titleIndex === 0 && reverse) {
       setTimeout(() => {
-        setTitleIndex(titleIndex + 1);
-      }, 100);
-    } else if (reverse) {
-      setTimeout(() => {
-        setTitleIndex(titleIndex - 1);
-      }, 50);
+        setReverse(false);
+      }, 1000);
+
+      return;
     }
+
+    setTimeout(() => {
+      setTitleIndex(titleIndex + (reverse ? -1 : 1));
+    }, (reverse ? 100 : 150));
   });
 
   return (
@@ -52,6 +54,11 @@ const About = () => {
         <div className={classes.cursor} />
       </div>
       <div className={classes.descriptionContainer}>
+        <img
+          className={classes.descriptionImage}
+          src={PicterOfMe}
+          alt={Constants.PICTURE_OF_ME_ALT}
+        />
         <p className={classes.aboutDescription}>{Constants.ABOUT_ME_DESCRIPTION}</p>
       </div>
       <div className={classes.descriptionContainer2}>
