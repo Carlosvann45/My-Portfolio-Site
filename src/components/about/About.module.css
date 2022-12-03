@@ -13,7 +13,7 @@
 	opacity: 0;
 	filter: blur(5px);
 	transform: translateX(-100%);
-	transition: all 1s;
+	transition: all 2s;
 	line-height: 1em;
 }
 
@@ -325,6 +325,7 @@
 }
 
 .contactFormContainer {
+	position: relative;
 	margin-bottom: 4em;
 	width: 100%;
 }
@@ -508,6 +509,76 @@
 	animation: move-background 60s ease infinite;
   }
 
+  .hideError {
+	opacity: 0;
+	z-index: 1;
+	filter: blur(5px);
+	transform: translateY(100%);
+	transition: all 1s;
+	position: absolute;
+	position: absolute;
+	top: 95.5%;
+	left: 0;
+	right: 0;
+	margin-left: auto; 
+	margin-right: auto;
+	border-radius: .5em;
+	background-color: rgb(160, 0, 0);
+	width: 45em;
+	height: fit-content;
+	padding: 1em;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	box-shadow: -.15em .1em .2em  black;
+
+  }
+
+  .hideError span {
+	color: white;
+    font-weight: 700;
+    font-size: 1.25em;
+    letter-spacing: .1em;
+	line-height: 1.5em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+  }
+
+  .errorMessage {
+	opacity: 1;
+	z-index: 1;
+	filter: blur(0px);
+	transform: translateY(0);
+	z-index: 1;
+	position: absolute;
+	top: 95.5%;
+	left: 0;
+	right: 0;
+	margin-left: auto; 
+	margin-right: auto;
+	border-radius: .5em;
+	background-color: rgb(160, 0, 0);
+	width: 45em;
+	height: fit-content;
+	padding: 1em;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	box-shadow: -.15em .1em .2em  black;
+  }
+
+  .errorMessage span {
+	color: white;
+    font-weight: 700;
+    font-size: 1.25em;
+    letter-spacing: .1em;
+	line-height: 1.5em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+  }
+
   .btnContainer {
 	display: flex;
 	justify-content: center;
@@ -528,6 +599,10 @@
 	background-color: white;
 	box-shadow: -.15em .1em .2em  black;
 	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+  }
+
+  .sendEmailBtn:hover {
+	cursor: pointer;
   }
 
   .sendEmailBtn:active {
@@ -699,6 +774,76 @@
 		width: 65%;
 		margin: 0 auto;
 		margin-bottom: 2em;
+	  }
+
+	  .hideError {
+		opacity: 0;
+		z-index: 1;
+		filter: blur(5px);
+		transform: translateY(100%);
+		transition: all 1s;
+		position: absolute;
+		position: absolute;
+		top: 95.5%;
+		left: 0;
+		right: 0;
+		margin-left: auto; 
+		margin-right: auto;
+		border-radius: .5em;
+		background-color: rgb(160, 0, 0);
+		width: 45em;
+		height: fit-content;
+		padding: 1em;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		box-shadow: -.15em .1em .2em  black;
+	
+	  }
+	
+	  .hideError span {
+		color: white;
+		font-weight: 700;
+		font-size: 1.25em;
+		letter-spacing: .1em;
+		line-height: 1.5em;
+		text-shadow: -.15em .1em .2em  black;
+		transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	  }
+	
+	  .errorMessage {
+		opacity: 1;
+		z-index: 1;
+		filter: blur(0px);
+		transform: translateY(0);
+		z-index: 1;
+		position: absolute;
+		top: 95.5%;
+		left: 0;
+		right: 0;
+		margin-left: auto; 
+		margin-right: auto;
+		border-radius: .5em;
+		background-color: rgb(160, 0, 0);
+		width: 45em;
+		height: fit-content;
+		padding: 1em;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		box-shadow: -.15em .1em .2em  black;
+	  }
+	
+	  .errorMessage span {
+		color: white;
+		font-weight: 700;
+		font-size: 1.25em;
+		letter-spacing: .1em;
+		line-height: 1.5em;
+		text-shadow: -.15em .1em .2em  black;
+		transform: rotateY(5deg) rotate(0deg) skew(5deg);
 	  }
   }
 
@@ -904,6 +1049,75 @@
 		margin-bottom: 2em;
 	  }
 
+	  .hideError {
+		opacity: 0;
+		z-index: 1;
+		filter: blur(5px);
+		transform: translateY(100%);
+		transition: all 1s;
+		position: absolute;
+		position: absolute;
+		top: 95.5%;
+		left: 0;
+		right: 0;
+		margin-left: auto; 
+		margin-right: auto;
+		border-radius: .5em;
+		background-color: rgb(160, 0, 0);
+		width: 45em;
+		height: fit-content;
+		padding: 1em;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		box-shadow: -.15em .1em .2em  black;
+	
+	  }
+	
+	  .hideError span {
+		color: white;
+		font-weight: 700;
+		font-size: 1.25em;
+		letter-spacing: .1em;
+		line-height: 1.5em;
+		text-shadow: -.15em .1em .2em  black;
+		transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	  }
+	
+	  .errorMessage {
+		opacity: 1;
+		z-index: 1;
+		filter: blur(0px);
+		transform: translateY(0);
+		z-index: 1;
+		position: absolute;
+		top: 95.5%;
+		left: 0;
+		right: 0;
+		margin-left: auto; 
+		margin-right: auto;
+		border-radius: .5em;
+		background-color: rgb(160, 0, 0);
+		width: 45em;
+		height: fit-content;
+		padding: 1em;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		box-shadow: -.15em .1em .2em  black;
+	  }
+	
+	  .errorMessage span {
+		color: white;
+		font-weight: 700;
+		font-size: 1.25em;
+		letter-spacing: .1em;
+		line-height: 1.5em;
+		text-shadow: -.15em .1em .2em  black;
+		transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	  }
   }
 
   /*Tablets*/
@@ -1180,6 +1394,74 @@
 		width: 75%;
 		margin: 0 auto;
 		margin-bottom: 2em;
+	  }
+
+	  .hideError {
+		opacity: 0;
+		z-index: 1;
+		filter: blur(5px);
+		transform: translateY(100%);
+		transition: all 1s;
+		position: absolute;
+		top: 95.5%;
+		left: 0;
+		right: 0;
+		margin-left: auto; 
+		margin-right: auto;
+		border-radius: .5em;
+		background-color: rgb(160, 0, 0);
+		width: 34em;
+		height: fit-content;
+		padding: .5em;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		box-shadow: -.15em .1em .2em  black;
+	
+	  }
+	
+	  .hideError span {
+		color: white;
+		font-weight: 700;
+		font-size: 1.25em;
+		letter-spacing: .1em;
+		line-height: 1.5em;
+		text-shadow: -.15em .1em .2em  black;
+		transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	  }
+	
+	  .errorMessage {
+		opacity: 1;
+		z-index: 1;
+		filter: blur(0px);
+		transform: translateY(0);
+		position: absolute;
+		top: 95.5%;
+		left: 0;
+		right: 0;
+		margin-left: auto; 
+		margin-right: auto;
+		border-radius: .5em;
+		background-color: rgb(160, 0, 0);
+		width: 34em;
+		height: fit-content;
+		padding: .5em;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		box-shadow: -.15em .1em .2em  black;
+	  }
+	
+	  .errorMessage span {
+		color: white;
+		font-weight: 700;
+		font-size: 1em;
+		letter-spacing: .1em;
+		line-height: 1.5em;
+		text-shadow: -.15em .1em .2em  black;
+		transform: rotateY(5deg) rotate(0deg) skew(5deg);
 	  }
   }
 
@@ -1581,6 +1863,74 @@
 		border-radius: .25em;
 		background: linear-gradient(45deg, purple, darkblue, purple) 0 0 / 1000% no-repeat;
 		animation: move-background 60s ease infinite;
+	  }
+
+	  .hideError {
+		opacity: 0;
+		z-index: 1;
+		filter: blur(5px);
+		transform: translateY(100%);
+		transition: all 1s;
+		position: absolute;
+		top: 95%;
+		left: 0;
+		right: 0;
+		margin-left: auto; 
+		margin-right: auto;
+		border-radius: .5em;
+		background-color: rgb(160, 0, 0);
+		width: 22.5em;
+		height: fit-content;
+		padding: .5em;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		box-shadow: -.15em .1em .2em  black;
+	
+	  }
+	
+	  .hideError span {
+		color: white;
+		font-weight: 700;
+		font-size: .75em;
+		letter-spacing: .1em;
+		line-height: 1.5em;
+		text-shadow: -.15em .1em .2em  black;
+		transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	  }
+	
+	  .errorMessage {
+		opacity: 1;
+		z-index: 1;
+		filter: blur(0px);
+		transform: translateY(0);
+		position: absolute;
+		top: 95%;
+		left: 0;
+		right: 0;
+		margin-left: auto; 
+		margin-right: auto;
+		border-radius: .5em;
+		background-color: rgb(160, 0, 0);
+		width: 22.5em;
+		height: fit-content;
+		padding: .5em;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		box-shadow: -.15em .1em .2em  black;
+	  }
+	
+	  .errorMessage span {
+		color: white;
+		font-weight: 700;
+		font-size: .75em;
+		letter-spacing: .1em;
+		line-height: 1.5em;
+		text-shadow: -.15em .1em .2em  black;
+		transform: rotateY(5deg) rotate(0deg) skew(5deg);
 	  }
 	
 	  .btnContainer {

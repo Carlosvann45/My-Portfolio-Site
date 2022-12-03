@@ -34,6 +34,24 @@ const About = () => {
   const [fullTitle] = useState(Constants.ABOUT_ME_TITLE);
   const [titleIndex, setTitleIndex] = useState(0);
   const [contactInfo, setContactInfo] = useState({});
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({});
+
+  const sendAndValidateEmail = () => {
+    setErrorMessage({ message: 'This is an example error message with some length.' });
+    setIsError(true);
+    setIsBtnDisabled(true);
+
+    setTimeout(() => {
+      setIsError(false);
+
+      setTimeout(() => {
+        setErrorMessage({});
+        setIsBtnDisabled(false);
+      }, 1000);
+    }, 5000);
+  };
 
   /**
    * @name handleChange
@@ -275,8 +293,18 @@ const About = () => {
               cols="25"
             />
           </label>
+          <p className={`${classes.hideError} ${isError ? classes.errorMessage : ''}`}>
+            <span>{errorMessage.message}</span>
+          </p>
           <div className={classes.btnContainer}>
-            <button className={classes.sendEmailBtn} type="button">Send</button>
+            <button
+              className={classes.sendEmailBtn}
+              onClick={() => sendAndValidateEmail()}
+              disabled={isBtnDisabled}
+              type="button"
+            >
+              Send
+            </button>
           </div>
         </div>
       </section>
