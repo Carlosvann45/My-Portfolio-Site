@@ -69,7 +69,7 @@ const About = () => {
     // to display the text
     setTimeout(() => {
       setTitleIndex(titleIndex + (reverse ? -1 : 1));
-    }, (reverse ? 100 : 150));
+    }, (reverse ? 75 : 150));
   });
 
   useEffect(() => {
@@ -105,7 +105,6 @@ const About = () => {
     <div className={classes.aboutPage}>
       <div className={classes.aboutTitleContainer}>
         <h1 className={classes.aboutTitle}>{fullTitle.substring(0, titleIndex)}</h1>
-        <div className={classes.cursor} />
       </div>
       <section className={classes.allDescriptions}>
         <div className={classes.descriptionContainer}>
@@ -228,17 +227,20 @@ const About = () => {
           </span>
         </div>
       </section>
+      <h2
+        id="contactTitle"
+        className={`${classes.hidden} ${isContactTitleInView ? classes.contactTitle : ''}`}
+        ref={contactTitle}
+      >
+        <span>
+          <span>
+            Contact
+          </span>
+          Information
+        </span>
+      </h2>
       <section className={classes.contactFormContainer}>
         <div className={classes.contactForm}>
-          <h2
-            id="contactTitle"
-            className={`${classes.hidden} ${isContactTitleInView ? classes.contactTitle : ''}`}
-            ref={contactTitle}
-          >
-            <span>
-              Contact
-            </span>
-          </h2>
           <div className={classes.contactDescriptionContainer}>
             <p className={classes.contactDescription}>{Constants.CONTACT_DESCRIPTION}</p>
           </div>
