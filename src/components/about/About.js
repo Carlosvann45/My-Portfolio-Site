@@ -35,6 +35,7 @@ const About = () => {
   const [fullTitle] = useState(Constants.ABOUT_ME_TITLE);
   const [titleIndex, setTitleIndex] = useState(0);
   const [contactInfo, setContactInfo] = useState({});
+  const [isEmailSent, setIsEmailSent] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
@@ -93,15 +94,16 @@ const About = () => {
    * @description runs code to validate contact information
    * @returns boolean value
    */
-  const isContactInfoValid = () => {
+  const isContactInfoValid = async () => {
     const conatctInfoSchema = yup.object().shape({
       email: yup.string().required(Constants.EMAIL_REQUIRED).email(Constants.EMAIL_FORMAT),
       subject: yup.string().required(Constants.SUBJECT_REQUIRED),
       message: yup.string().required(Constants.MESSAGE_REQUIRED)
     });
 
-    const validationResult = conatctInfoSchema.validate(contactInfo, { abortEarly: false })
-      .then(() => true)
+    let validationResult = true;
+
+    await conatctInfoSchema.validate(contactInfo, { abortEarly: false })
       .catch((error) => {
         const errors = mapErrors(error.errors);
 
@@ -119,28 +121,29 @@ const About = () => {
         removeErrorMessage();
         showErrorMessage();
 
-        return false;
+        validationResult = false;
       });
 
-    return async () => {
-      const endingValue = await validationResult;
-
-      return endingValue;
-    };
+    return validationResult;
   };
 
   /**
    * @name sendAndValidateEmail
    * @description  validates sends email if information is correct
    */
-  const sendAndValidateEmail = () => {
+  const sendAndValidateEmail = async () => {
     setIsEmailError(false);
     setIsSubjectError(false);
     setIsMessageError(false);
 
-    if (isContactInfoValid()) {
+    if (await isContactInfoValid()) {
       // send email
 
+      setIsEmailSent(true);
+
+      setTimeout(() => {
+        setIsEmailSent(false);
+      }, 7000);
     }
   };
 
@@ -353,7 +356,7 @@ const About = () => {
           <div className={classes.contactDescriptionContainer}>
             <p className={classes.contactDescription}>{Constants.CONTACT_DESCRIPTION}</p>
           </div>
-          <label className={classes.emailContainer} htmlFor="emailInput">
+          <label className={`${classes.emailContainer} ${isEmailSent ? classes.hideEmail : ''}`} htmlFor="emailInput">
             <span className={classes.emailTitle}>Email</span>
             <input
               id="email"
@@ -364,7 +367,7 @@ const About = () => {
               name="emailInput"
             />
           </label>
-          <label className={classes.subjectContainer} htmlFor="subjectInput">
+          <label className={`${classes.subjectContainer} ${isEmailSent ? classes.hideSubject : ''}`} htmlFor="subjectInput">
             <span className={classes.subjectTitle}>Subject</span>
             <input
               id="subject"
@@ -376,7 +379,7 @@ const About = () => {
               name="subjectInput"
             />
           </label>
-          <label className={classes.messageContainer} htmlFor="emailMessage">
+          <label className={`${classes.messageContainer} ${isEmailSent ? classes.hideMessage : ''}`} htmlFor="emailMessage">
             <span className={classes.messageTitle}>Message</span>
             <textarea
               id="message"
@@ -391,7 +394,7 @@ const About = () => {
           <p className={`${classes.hideError} ${isError ? classes.errorMessage : ''}`}>
             <span>{errorMessage.message}</span>
           </p>
-          <div className={classes.btnContainer}>
+          <div className={`${classes.btnContainer} ${isEmailSent ? classes.hideBtn : ''}`}>
             <button
               className={classes.sendEmailBtn}
               onClick={() => sendAndValidateEmail()}
@@ -400,6 +403,12 @@ const About = () => {
             >
               Send
             </button>
+          </div>
+          <div className={`${classes.hideConfirmation} ${isEmailSent ? classes.showConfirmation : ''}`}>
+            <h3 className={classes.confirmationTitle}>Thank you!</h3>
+            <p className={classes.confirmationText}>
+              Your email has been sent. I will get back to you as soon as possible.
+            </p>
           </div>
         </div>
       </section>
