@@ -1,6 +1,7 @@
 import React, {
   useEffect, useState, useRef
 } from 'react';
+import * as yup from 'yup';
 import classes from './About.module.css';
 import Constants from '../../utils/Constants';
 import CPluslogo from '../images/c-plus-plus.png';
@@ -36,13 +37,20 @@ const About = () => {
   const [contactInfo, setContactInfo] = useState({});
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState({});
+  const [isEmailError, setIsEmailError] = useState(false);
+  const [isSubjectError, setIsSubjectError] = useState(false);
+  const [isMessageError, setIsMessageError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({
+    email: '',
+    subject: '',
+    message: ''
+  });
 
-  const sendAndValidateEmail = () => {
-    setErrorMessage({ message: 'This is an example error message with some length.' });
-    setIsError(true);
-    setIsBtnDisabled(true);
-
+  /**
+   * @name removeErrorMessage
+   * @description sets usestate to not show message box
+   */
+  const removeErrorMessage = () => {
     setTimeout(() => {
       setIsError(false);
 
@@ -51,6 +59,89 @@ const About = () => {
         setIsBtnDisabled(false);
       }, 1000);
     }, 5000);
+  };
+
+  /**
+   * @name showErrorMessage
+   * @description sets usestate to show message box
+   */
+  const showErrorMessage = () => {
+    setIsError(true);
+    setIsBtnDisabled(true);
+  };
+
+  /**
+   * @name mapErrors
+   * @description maps errors from validation yup validation schema
+   * @param {*} array array to map errors from
+   * @returns error object
+   */
+  const mapErrors = (array) => {
+    let newErrors = {};
+
+    array.forEach((error) => {
+      if (error.toLowerCase().includes('email')) newErrors = { ...newErrors, email: error };
+      else if (error.toLowerCase().includes('subject'))newErrors = { ...newErrors, subject: error };
+      else if (error.toLowerCase().includes('message')) newErrors = { ...newErrors, message: error };
+    });
+
+    return newErrors;
+  };
+
+  /**
+   * @name isContactInfoValid
+   * @description runs code to validate contact information
+   * @returns boolean value
+   */
+  const isContactInfoValid = () => {
+    const conatctInfoSchema = yup.object().shape({
+      email: yup.string().required(Constants.EMAIL_REQUIRED).email(Constants.EMAIL_FORMAT),
+      subject: yup.string().required(Constants.SUBJECT_REQUIRED),
+      message: yup.string().required(Constants.MESSAGE_REQUIRED)
+    });
+
+    const validationResult = conatctInfoSchema.validate(contactInfo, { abortEarly: false })
+      .then(() => true)
+      .catch((error) => {
+        const errors = mapErrors(error.errors);
+
+        if (errors.email) {
+          setErrorMessage({ message: errors.email });
+          setIsEmailError(true);
+        } else if (errors.subject) {
+          setErrorMessage({ message: errors.subject });
+          setIsSubjectError(true);
+        } else {
+          setErrorMessage({ message: errors.message });
+          setIsMessageError(true);
+        }
+
+        removeErrorMessage();
+        showErrorMessage();
+
+        return false;
+      });
+
+    return async () => {
+      const endingValue = await validationResult;
+
+      return endingValue;
+    };
+  };
+
+  /**
+   * @name sendAndValidateEmail
+   * @description  validates sends email if information is correct
+   */
+  const sendAndValidateEmail = () => {
+    setIsEmailError(false);
+    setIsSubjectError(false);
+    setIsMessageError(false);
+
+    if (isContactInfoValid()) {
+      // send email
+
+    }
   };
 
   /**
@@ -267,7 +358,8 @@ const About = () => {
             <input
               id="email"
               onChange={handleChange}
-              className={classes.emailInput}
+              className={`${classes.emailInput} ${isEmailError ? classes.inputError : ''}`}
+              value={contactInfo.email}
               type="email"
               name="emailInput"
             />
@@ -277,8 +369,10 @@ const About = () => {
             <input
               id="subject"
               onChange={handleChange}
-              className={classes.subjectInput}
-              type="subject"
+              className={`${classes.subjectInput} ${isSubjectError ? classes.inputError : ''}`}
+              value={contactInfo.subject}
+              maxLength="68"
+              type="text"
               name="subjectInput"
             />
           </label>
@@ -286,8 +380,9 @@ const About = () => {
             <span className={classes.messageTitle}>Message</span>
             <textarea
               id="message"
-              className={classes.messageInput}
+              className={`${classes.messageInput} ${isMessageError ? classes.inputError : ''}`}
               onChange={handleChange}
+              value={contactInfo.message}
               name="emailMessage"
               rows="8"
               cols="25"

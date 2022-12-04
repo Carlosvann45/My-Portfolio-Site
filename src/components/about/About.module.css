@@ -17,6 +17,10 @@
 	line-height: 1em;
 }
 
+.inputError {
+	border: 3px solid rgb(160, 0, 0);
+}
+
 .aboutTitleContainer {
 	margin-top: 1em;
 	display: flex;
@@ -513,7 +517,7 @@
 	opacity: 0;
 	z-index: 1;
 	filter: blur(5px);
-	transform: translateY(100%);
+	transform: translateY(-100%);
 	transition: all 1s;
 	position: absolute;
 	position: absolute;
@@ -780,7 +784,7 @@
 		opacity: 0;
 		z-index: 1;
 		filter: blur(5px);
-		transform: translateY(100%);
+		transform: translateY(-100%);
 		transition: all 1s;
 		position: absolute;
 		position: absolute;
@@ -1053,7 +1057,7 @@
 		opacity: 0;
 		z-index: 1;
 		filter: blur(5px);
-		transform: translateY(100%);
+		transform: translateY(-100%);
 		transition: all 1s;
 		position: absolute;
 		position: absolute;
@@ -1400,7 +1404,7 @@
 		opacity: 0;
 		z-index: 1;
 		filter: blur(5px);
-		transform: translateY(100%);
+		transform: translateY(-100%);
 		transition: all 1s;
 		position: absolute;
 		top: 95.5%;
@@ -1457,7 +1461,7 @@
 	  .errorMessage span {
 		color: white;
 		font-weight: 700;
-		font-size: 1em;
+		font-size: 1.25em;
 		letter-spacing: .1em;
 		line-height: 1.5em;
 		text-shadow: -.15em .1em .2em  black;
@@ -1869,7 +1873,7 @@
 		opacity: 0;
 		z-index: 1;
 		filter: blur(5px);
-		transform: translateY(100%);
+		transform: translateY(-100%);
 		transition: all 1s;
 		position: absolute;
 		top: 95%;
