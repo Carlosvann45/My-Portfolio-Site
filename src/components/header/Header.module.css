@@ -1,0 +1,45 @@
+.headerContainer {
+	width: 100%;
+	position: sticky;
+	top: -1px;
+	border-collapse: collapse;
+	z-index: 1;
+	backdrop-filter: blur(.5em);
+							
+}
+
+.sticky {
+	box-shadow: .1em .5em 1em black;
+	transition: all .1s;
+}
+
+.headerBackground {
+	padding: 1em;
+	height: 5;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+
+	color: white;
+    font-weight: 700;
+    font-size: 1.5em;
+    letter-spacing: .1em;
+	line-height: 1.5em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+}
+
+@keyframes move-background {
+  0% {
+	  background-position: 0 30%, 0 0;
+  }
+
+  50% {
+	  background-position: 100% 70%, 0 0;
+  }
+
+  100% {
+	  background-position: 0 30%, 0 0;
+  }
+
+}
