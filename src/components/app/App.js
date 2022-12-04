@@ -3,9 +3,8 @@ import './App.css';
 import {
   BrowserRouter, Route, Switch
 } from 'react-router-dom';
-import Navigation from '../navigation/Navigation';
 import NotFound from '../not-found/NotFound';
-import PatientPage from '../patients-page/PatientPage';
+import About from '../about/About';
 
 /**
  * Runs browser router to specific webpage.
@@ -14,9 +13,9 @@ import PatientPage from '../patients-page/PatientPage';
  */
 const App = () => (
   <BrowserRouter>
-    <Navigation />
     <Switch>
-      <Route exact path="/" render={() => <PatientPage />} />
+      <Route exact path="/" render={() => {}} />
+      <Route exact path="/about" render={() => <About />} />
       <Route render={() => <NotFound />} />
     </Switch>
   </BrowserRouter>
