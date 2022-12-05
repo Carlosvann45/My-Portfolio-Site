@@ -165,6 +165,7 @@
     font-size: 1em;
     letter-spacing: .1em;
 	text-shadow: -.15em .1em .2em  gray;
+	transition: all 1s;
 }
 
 .musicOptions li button.topBtn {
@@ -176,12 +177,13 @@
 }
 
 .buttonSelected {
-	
 	transform: translateX(5%);
+	transition: all 1s;
 }
 
 .musicOptions li:hover button{
 	transform: translateX(5%);
+	transition: all 1s;
 }
 
 .sticky li .bottomBtn {
