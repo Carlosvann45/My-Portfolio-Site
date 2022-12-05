@@ -8,23 +8,23 @@ import About from '../about/About';
 import Header from '../header/Header';
 
 /**
- * Runs browser router to specific webpage.
- *
+ * @name App
+ * @description Runs browser router to specific webpage.
  * @returns page for user to view
  */
 const App = () => (
-  <div className={classes.siteContainer}>
-    <Header />
-    <div className={classes.pageContainer}>
-      <BrowserRouter>
+  <BrowserRouter>
+    <div className={classes.siteContainer}>
+      <Header />
+      <div className={classes.pageContainer}>
         <Switch>
           <Route exact path="/" render={() => {}} />
           <Route exact path="/about" render={() => <About />} />
           <Route render={() => <NotFound />} />
         </Switch>
-      </BrowserRouter>
+      </div>
     </div>
-  </div>
+  </BrowserRouter>
 );
 
 export default App;
