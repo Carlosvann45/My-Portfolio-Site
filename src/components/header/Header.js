@@ -16,11 +16,22 @@ import classes from './Header.module.css';
 const Header = () => {
   const headerRef = useRef();
   const history = useHistory();
+  const [locationChange, setLocationChange] = useState(false);
+  const [navSelected, setNavSelected] = useState('');
   const [isSticky, setIsSticky] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [showNav, setShowNav] = useState(false);
   const [selectedAudio, setSelectedAudio] = useState('missYou');
   const [sounds, setSounds] = useState({});
+
+  useEffect(() => {
+    const url = window.location.href;
+
+    if (url.includes('/about')) setNavSelected('about');
+    else if (url.includes('/experince')) setNavSelected('experince');
+    else setNavSelected('home');
+  }, [locationChange]);
 
   useEffect(() => {
     // adds shaddow to header when it gets sticky
@@ -189,12 +200,20 @@ const Header = () => {
             </ul>
           </div>
         </div>
-        <ul className={classes.navContainer}>
-          <li>
+        <button type="button" className={classes.imgNavBtn} onClick={() => setShowNav(!showNav)}>
+          <img
+            src={SelectIcon}
+            className={showNav ? classes.musicSelector : classes.musicSelectorOpen}
+            alt={Constants.MUSIC_SELECTOR_ALT}
+          />
+
+        </button>
+        <ul className={`${showNav ? classes.navContainer : classes.hideNav} ${isSticky ? classes.navSticky : ''}`}>
+          <li className={classes.topItem}>
             <button
               type="button"
-              className={classes.navLink}
-              onClick={() => history.push('/')}
+              className={navSelected === 'home' ? classes.navSelected : classes.navLink}
+              onClick={() => { setLocationChange(!locationChange); history.push('/'); }}
             >
               Home
             </button>
@@ -202,17 +221,17 @@ const Header = () => {
           <li>
             <button
               type="button"
-              className={classes.navLink}
-              onClick={() => history.push('/about')}
+              className={navSelected === 'about' ? classes.navSelected : classes.navLink}
+              onClick={() => { setLocationChange(!locationChange); history.push('/about'); }}
             >
               About
             </button>
           </li>
-          <li>
+          <li className={classes.bottomItem}>
             <button
               type="button"
-              className={classes.navLink}
-              onClick={() => history.push('/experince')}
+              className={navSelected === 'experince' ? classes.navSelected : classes.navLink}
+              onClick={() => { setLocationChange(!locationChange); history.push('/experince'); }}
             >
               Experince
             </button>
