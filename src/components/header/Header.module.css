@@ -1,0 +1,511 @@
+
+/*Large Desktop*/
+.headerContainer {
+	width: 100%;
+	position: sticky;
+	top: -1px;
+	z-index: 1;
+	background: inherit;
+	backdrop-filter: blur(.5em);
+	-webkit-backdrop-filter: blur(.5em);
+	transition: all 1s;		
+}
+
+.sticky {
+	box-shadow: .1em .5em 1em black;
+	transition: all 1s;
+}
+
+.headerBackground {
+	position: relative;
+	padding: 1em 0em;
+	padding-left: .5em;
+	height: 4em;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.musicContainer {
+	z-index: 2;
+	width: fit-content;
+	height: fit-content;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: auto 0;
+	backdrop-filter: blur(.5em);
+}
+
+.imgBtn {
+	border: none;
+	background: none;
+}
+
+.musicSelector {
+	cursor: pointer;
+	width: 1.5em;
+	height: 1.5em;
+	margin: 0 1em;
+	filter: drop-shadow(-.15em .1em .2em  black);
+	transform: rotate(-90deg);
+	transition: all 1s;
+}
+
+.musicSelectorOpen {
+	cursor: pointer;
+	width: 1.5em;
+	height: 1.5em;
+	margin: 0 1em;
+	filter: drop-shadow(-.15em .1em .2em  black);
+	transform: rotate(-270deg);
+	transition: all 1s;
+}
+
+.musicBtn {
+	cursor: pointer;
+	height: 2em;
+	display: flex;
+	margin: auto 0;
+	align-items: center;
+	background: none;
+	border: none;
+}
+
+.musicBtnOff {
+	display: flex;
+	height: .75em;
+}
+
+.stroke {
+	display: block;
+	position: relative;
+	background: white;
+	height: 100%;
+	width: .25em;
+	border-radius: .5em;
+	margin: 0 .25em;
+	box-shadow: -.15em .1em .2em  black;
+}
+
+.animatePlay {
+	animation: play-music 1.2s linear infinite;
+}
+
+.animatePlay:nth-child(1) {
+	animation-delay: 0s;
+}
+
+.animatePlay:nth-child(2) {
+	animation-delay: 0.3s;
+}
+
+.animatePlay:nth-child(3) {
+	animation-delay: 0.6s;
+}
+
+.animatePlay:nth-child(4) {
+	animation-delay: 0.9s;
+}
+
+.animatePlay:nth-child(5) {
+	animation-delay: 0.6s;
+}
+
+.animatePlay:nth-child(6) {
+	animation-delay: 0.3s;
+}
+
+.animatePlay:nth-child(7) {
+	animation-delay: 0s;
+}
+
+.musicOptionsContainer {
+	opacity: 1;
+	z-index: 0;
+	position: absolute;
+	left: -15%;
+	top: 2.6em;
+	transition: all 1s;
+}
+
+.hideOptions {
+	opacity: 0;
+	z-index: 3;
+	position: absolute;
+	left: -150%;
+	top: 2.6em;
+	transition: all 1s;
+}
+
+.musicOptions {
+	z-index: 0;
+	position: relative;
+	display: inline-block;
+	width: fit-content;
+	border-bottom-right-radius: .5em;
+	transition: all 1s;
+}
+
+.musicOptions li {
+	list-style: none;
+}
+
+.musicOptions li button {
+	border: 1px solid black;
+	border-left: none;
+	border-right: 2px solid black;
+	width: 10em;
+	text-align: center;
+	padding: 1em 1em;
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(.5em);
+	color: black;
+    font-weight: 700;
+    font-size: 1em;
+    letter-spacing: .1em;
+	text-shadow: -.15em .1em .2em  gray;
+	transition: all 1s;
+}
+
+.musicOptions li button.topBtn {
+	border-top: 2px solid black;
+}
+
+.musicOptions li button.bottomBtn {
+	border-bottom: 2px solid black;
+}
+
+.buttonSelected {
+	transform: translateX(5%);
+	transition: all 1s;
+}
+
+.musicOptions li:hover button{
+	transform: translateX(5%);
+	transition: all 1s;
+}
+
+.sticky li .bottomBtn {
+	border-bottom-right-radius: .5em;
+}
+
+.imgNavBtn {
+	visibility: hidden;
+}
+
+.navContainer {
+	display: flex;
+	flex-direction: row;
+	margin: 0 2em;
+}
+
+.hideNav {
+	display: flex;
+	flex-direction: row;
+	margin: 0 2em;
+}
+
+.navContainer li {
+	list-style: none;
+}
+
+.hideNav li {
+	list-style: none;
+}
+
+.navLink {
+	cursor: pointer;
+	margin: 0 1em;
+	background: none;
+	border: none;
+	color: white;
+    font-weight: 700;
+    font-size: 1.5em;
+    letter-spacing: .1em;
+	line-height: 1.5em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	
+}
+
+.navLink::after {
+	opacity: 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 0%;
+	margin-top: .5em;
+    border-bottom: 2px solid white;
+	box-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+    transition: width 0.3s ease;
+
+}
+
+.navLink:hover::after {
+	opacity: 1;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+	margin-top: .5em;
+    border-bottom: 2px solid white;
+	box-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+    transition: width 0.3s ease;
+
+}
+
+.navSelected {
+	cursor: pointer;
+	margin: 0 1em;
+	background: none;
+	border: none;
+	color: white;
+    font-weight: 700;
+    font-size: 1.5em;
+    letter-spacing: .1em;
+	line-height: 1.5em;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+	
+}
+
+.navSelected::after {
+	opacity: 1;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+	margin-top: .5em;
+    border-bottom: 2px solid white;
+	box-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(5deg);
+    transition: width 0.3s ease;
+
+}
+
+/*Medium Desktop*/
+
+@media screen and (max-width: 1538px) {
+
+	.navContainer .navLink {
+		margin: auto 1em;
+		margin-right: 0em;
+	}
+
+	.navContainer .navSelected {
+		margin: auto 1em;
+		margin-right: 0em;
+	}
+}
+
+/*Small Desktop*/
+
+@media screen and (max-width: 1194px) {
+	
+}
+
+/*Tablet*/
+
+@media  screen and (max-width: 850px) {
+
+	.navSelected {
+		height: 100%;
+		margin: auto 1em;
+		margin-right: 0em;
+		font-size: 1.25em;
+	}
+	
+	.navLink {
+		height: 100%;
+		margin: auto 1em;
+		margin-right: 0em;
+		font-size: 1.25em;
+	}
+}
+
+/*Phone*/
+
+@media screen and (max-width: 550px) {
+
+	.imgNavBtn {
+		visibility: visible;
+		background: none;
+		border: none;
+	}
+
+	.navContainer {
+		opacity: 1;
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		top: 4em;
+		left: 74%;
+		margin: 0;
+		transition: all 1s;
+		border-bottom-left-radius: .5em;
+	}
+	
+	.navSticky {
+		box-shadow: -.1em .5em 1em black;
+		transition: all 1s;
+	}
+
+	.hideNav {
+		opacity: 0;
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		top: 4em;
+		left: 100%;
+		margin: 0;
+		transition: all 1s;
+		list-style: none;
+	}
+
+	.navContainer li button {	
+		border: 1px solid black;
+		border-right: none;
+		border-left: 2px solid black;
+		width: 10em;
+		text-align: center;
+		padding: .85em 1em;
+		cursor: pointer;
+		background-color: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(.5em);
+		color: black;
+		font-weight: 700;
+		font-size: 1em;
+		letter-spacing: .1em;
+		text-shadow: -.15em .1em .2em  gray;
+		transition: all 1s;
+		transform: rotateY(0deg) rotate(0deg) skew(0deg);
+
+		margin: 0;
+	}
+
+	.hideNav li button {	
+		border: 1px solid black;
+		border-right: none;
+		border-left: 2px solid black;
+		width: 10em;
+		text-align: center;
+		padding: .85em 1em;
+		cursor: pointer;
+		background-color: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(.5em);
+		color: black;
+		font-weight: 700;
+		font-size: 1em;
+		letter-spacing: .1em;
+		text-shadow: -.15em .1em .2em  gray;
+		transition: all 1s;
+
+		margin: 0;
+	}
+
+	.navContainer li button.navLink {	
+		margin: 0;
+	}
+
+	.navContainer li button.navSelected {	
+		margin: 0;
+		transform: translateX(-5%);
+	}
+
+	.navSelected:after {
+		margin: 0;
+		border: none;
+	}
+
+	.topItem button.navLink {
+		border-top: 2px solid black;
+	}
+
+	.topItem button.navSelected {
+		border-top: 2px solid black;
+	}
+
+	.bottomItem button.navLink {
+		border-bottom: 2px solid black;
+	}
+
+	.bottomItem button.navSelected {
+		border-bottom: 2px solid black;
+	}
+
+	.sticky .bottomItem button.navLink {
+		border-bottom-left-radius: .5em;
+	}
+
+	.sticky .bottomItem button.navSelected {
+		border-bottom-left-radius: .5em;
+	}
+
+}
+
+@media screen and (max-width: 525px) {
+	.navContainer {
+		left: 72%;
+	}
+ }
+
+@media screen and (max-width: 500px) {
+	.navContainer {
+		left: 70%;
+	}
+ }
+
+ @media screen and (max-width: 475px) {
+	 .navContainer {
+		 left: 68.5%;
+	 }
+  }
+
+  @media screen and (max-width: 450px) {
+	  .navContainer {
+		  left: 66.5%;
+	  }
+   }
+
+   @media screen and (max-width: 425px) {
+	   .navContainer {
+		   left: 64%;
+	   }
+	}
+
+	@media screen and (max-width: 400px) {
+		.navContainer {
+			left: 62%;
+		}
+	 }	
+	 
+	 @media screen and (max-width: 375px) {
+		.navContainer {
+			left: 60%;
+		}
+	 }
+
+/*Animations*/
+
+@keyframes play-music {
+  50% {
+	  height: 20%;
+  }
+
+  100% {
+	  height: 100%;
+  }
+
+}

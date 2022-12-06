@@ -1,0 +1,9 @@
+.siteContainer {
+	width: 100%;
+}
+
+.pageContainer {
+	width: 100%;
+	height: fit-content;
+	margin-top: 3em;
+}
