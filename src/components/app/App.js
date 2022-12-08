@@ -6,6 +6,7 @@ import classes from './App.module.css';
 import NotFound from '../not-found/NotFound';
 import About from '../about/About';
 import Header from '../header/Header';
+import Home from '../home/Home';
 
 /**
  * @name App
@@ -18,7 +19,7 @@ const App = () => (
       <Header />
       <div className={classes.pageContainer}>
         <Switch>
-          <Route exact path="/" render={() => {}} />
+          <Route exact path="/" render={() => <Home />} />
           <Route exact path="/about" render={() => <About />} />
           <Route render={() => <NotFound />} />
         </Switch>

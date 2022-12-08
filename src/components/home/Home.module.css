@@ -1,0 +1,177 @@
+/*Large Desktop*/
+
+.homePageContainer {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.homeTitle {
+	position: absolute;
+	height: 1em;
+    text-align: center;
+	color: white;
+    font-weight: 700;
+    font-size: 3.75em;
+    letter-spacing: .1em;
+	line-height: 1em;
+	
+	top: 50%;
+	left: 50%;
+	text-shadow: -.15em .1em .2em  black;
+	transform: rotateY(5deg) rotate(0deg) skew(0) translate(-50%, -50%);
+}
+
+.homeTitle span:after {
+	content: '|';
+	animation: blink .6s linear infinite;
+}
+
+.boxes div {
+	z-index: 2;
+	position: absolute;
+	width: 5em;
+	height: 5em;
+	background-color: transparent;
+	border: 6px solid rgba(255, 255, 255, 0.8) 
+
+}
+
+.boxes div:nth-child(1) {
+	top: 12%;
+	left: 42%;
+	animation: animate-box 10s linear infinite;
+}
+
+.boxes div:nth-child(2) {
+	top: 70%;
+	left: 50%;
+	animation: animate-box 7s linear infinite;
+}
+
+.boxes div:nth-child(3) {
+	top: 17%;
+	left: 6%;
+	animation: animate-box 9s linear infinite;
+}
+
+.boxes div:nth-child(4) {
+	top: 20%;
+	left: 60%;
+	animation: animate-box 10s linear infinite;
+}
+
+.boxes div:nth-child(5) {
+	top: 67%;
+	left: 10%;
+	animation: animate-box 6s linear infinite;
+}
+
+.boxes div:nth-child(6) {
+	top: 80%;
+	left: 70%;
+	animation: animate-box 12s linear infinite;
+}
+
+.boxes div:nth-child(7) {
+	top: 60%;
+	left: 80%;
+	animation: animate-box 15s linear infinite;
+}
+
+.boxes div:nth-child(8) {
+	top: 32%;
+	left: 25%;
+	animation: animate-box 16s linear infinite;
+}
+
+.boxes div:nth-child(9) {
+	top: 90%;
+	left: 25%;
+	animation: animate-box 9s linear infinite;
+}
+
+.boxes div:nth-child(10) {
+	top: 20%;
+	left: 80%;
+	animation: animate-box 5s linear infinite;
+}
+
+/*Medium Desktop*/
+
+@media screen and (max-width: 1538px) { 
+
+	.boxes div {
+		width: 4em;
+		height: 4em;
+		border: 5px solid rgba(255, 255, 255, 0.8) 
+	}
+}
+
+/*Small Desktop*/
+
+@media screen and (max-width: 1194px) {
+
+	.boxes div {
+		width: 3em;
+		height: 3em;
+		border: 4px solid rgba(255, 255, 255, 0.8) 
+	
+	}
+
+	.homeTitle {
+		font-size: 2.75em;
+	}
+	
+}
+
+/*Tablet*/
+
+@media  screen and (max-width: 850px) {
+
+	.boxes div {
+		width: 2em;
+		height: 2em;
+		border: 3px solid rgba(255, 255, 255, 0.8) 
+	}
+
+	.homeTitle {
+		font-size: 1.75em;
+	}
+
+}
+
+/*Phone*/
+
+@media screen and (max-width: 550px) {
+
+	.homeTitle {
+		font-size: 1.2em;
+	}
+
+}
+
+/*Animations*/
+
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+	
+}
+
+@keyframes animate-box {
+	0% {
+		transform: scale(0) translateY(0) rotate(0);
+		opacity: 1;
+	}
+
+	100% {
+		transform: scale(1.2) translateY(-90px) rotate(360deg);
+		opacity: 0;
+	}
+}
