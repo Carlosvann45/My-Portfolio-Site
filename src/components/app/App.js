@@ -1,12 +1,11 @@
 import React from 'react';
 import {
-  BrowserRouter, Route, Switch
+  BrowserRouter as Router,
+  Route, Routes
 } from 'react-router-dom';
-import classes from './App.module.css';
 import NotFound from '../not-found/NotFound';
 import About from '../about/About';
-import Header from '../header/Header';
-import Home from '../home/Home';
+import PageLayout from '../layouts/PageLayout';
 
 /**
  * @name App
@@ -14,18 +13,15 @@ import Home from '../home/Home';
  * @returns page for user to view
  */
 const App = () => (
-  <BrowserRouter>
-    <div className={classes.siteContainer}>
-      <Header />
-      <div className={classes.pageContainer}>
-        <Switch>
-          <Route exact path="/" render={() => <Home />} />
-          <Route exact path="/about" render={() => <About />} />
-          <Route render={() => <NotFound />} />
-        </Switch>
-      </div>
-    </div>
-  </BrowserRouter>
+  <Router>
+    <Routes>
+      <Route path="/" element={<PageLayout />}>
+        <Route exact path="/" element />
+        <Route exact path="about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  </Router>
 );
 
 export default App;
