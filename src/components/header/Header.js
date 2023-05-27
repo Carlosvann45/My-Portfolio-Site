@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Constants from '../../utils/Constants';
 import SelectIcon from '../images/caret-up-solid.svg';
 import Adventure from '../audio/roa-music-adventure.mp3';
@@ -15,7 +15,7 @@ import classes from './Header.module.css';
  */
 const Header = () => {
   const headerRef = useRef();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [locationChange, setLocationChange] = useState(false);
   const [navSelected, setNavSelected] = useState('');
   const [isSticky, setIsSticky] = useState(false);
@@ -213,7 +213,7 @@ const Header = () => {
             <button
               type="button"
               className={navSelected === 'home' ? classes.navSelected : classes.navLink}
-              onClick={() => { setLocationChange(!locationChange); history.push('/'); }}
+              onClick={() => { setLocationChange(!locationChange); navigate('/'); }}
             >
               Home
             </button>
@@ -222,7 +222,7 @@ const Header = () => {
             <button
               type="button"
               className={navSelected === 'about' ? classes.navSelected : classes.navLink}
-              onClick={() => { setLocationChange(!locationChange); history.push('/about'); }}
+              onClick={() => { setLocationChange(!locationChange); navigate('/about'); }}
             >
               About
             </button>
@@ -231,7 +231,7 @@ const Header = () => {
             <button
               type="button"
               className={navSelected === 'experince' ? classes.navSelected : classes.navLink}
-              onClick={() => { setLocationChange(!locationChange); history.push('/experince'); }}
+              onClick={() => { setLocationChange(!locationChange); navigate('/experince'); }}
             >
               Experince
             </button>
