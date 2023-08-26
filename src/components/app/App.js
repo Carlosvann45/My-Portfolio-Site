@@ -6,6 +6,7 @@ import {
 import NotFound from '../not-found/NotFound';
 import About from '../about/About';
 import PageLayout from '../layouts/PageLayout';
+import AdminLayout from '../layouts/AdminLayout';
 import Home from '../home/Home';
 
 /**
@@ -20,6 +21,10 @@ const App = () => (
         <Route exact path="/" element={<Home />} />
         <Route exact path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
+      </Route>
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route exact path="/admin/login" element={<Home />} />
+        <Route path="/admin/*" element={<NotFound />} />
       </Route>
     </Routes>
   </Router>

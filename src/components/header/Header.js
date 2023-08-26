@@ -30,7 +30,7 @@ const Header = () => {
     const url = window.location.href;
 
     if (url.includes('/about')) setNavSelected('about');
-    else if (url.includes('/experince')) setNavSelected('experince');
+    else if (url.includes('/projects')) setNavSelected('projects');
     else setNavSelected('home');
   }, [locationChange]);
 
@@ -235,10 +235,10 @@ const Header = () => {
           <li className={classes.bottomItem}>
             <button
               type="button"
-              className={navSelected === 'experince' ? classes.navSelected : classes.navLink}
-              onClick={() => { setLocationChange(!locationChange); navigate('/experince'); }}
+              className={navSelected === 'projects' ? classes.navSelected : classes.navLink}
+              onClick={() => { setLocationChange(!locationChange); navigate('/projects'); }}
             >
-              Experince
+              Projects
             </button>
           </li>
         </ul>
