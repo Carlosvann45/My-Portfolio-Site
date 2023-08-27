@@ -20,11 +20,11 @@ const App = () => (
       <Route path="/" element={<PageLayout />}>
         <Route exact path="/" element={<Home />} />
         <Route exact path="about" element={<About />} />
+        <Route exact path="login" element={<Home />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
-        <Route exact path="/admin/login" element={<Home />} />
-        <Route path="/admin/*" element={<NotFound />} />
+        <Route exact path="*" element={<Home />} />
       </Route>
     </Routes>
   </Router>

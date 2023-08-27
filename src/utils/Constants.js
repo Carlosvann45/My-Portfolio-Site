@@ -1,7 +1,8 @@
 /**
  * Constants to be used in application
  */
-module.exports = Object.freeze({
+export default Object.freeze({
+  BASE_URL_API: 'http://localhost:5000',
   C_PLUS_ALT: 'C plus plus logo',
   C_SHARP_ALT: 'C sharp logo',
   HTML_ALT: 'HTML logo',
@@ -24,5 +25,7 @@ module.exports = Object.freeze({
   EMAIL_REQUIRED: 'Email is a required field.',
   EMAIL_FORMAT: 'Email must be in a valid email format.',
   SUBJECT_REQUIRED: 'Subject is a required field.',
-  MESSAGE_REQUIRED: 'Message is a required field.'
+  MESSAGE_REQUIRED: 'Message is a required field.',
+  VERIFY_TOKEN_ROUTE: '/users/verify_token',
+  REFRSH_ROUTE: '/users/refresh_token'
 });

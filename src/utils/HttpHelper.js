@@ -1,3 +1,4 @@
+import Cookies from 'universal-cookie';
 import Constants from './Constants';
 
 /**
@@ -6,12 +7,33 @@ import Constants from './Constants';
  * @param {string} route address to ping
  * @param {string} method http method
  * @param {Object} payload object to send
+ * @param {Boolean} isRefreshToken object to send
  * @return {Promise} - Promise from the fetch call
  */
-export default (route, method, payload) => fetch(Constants.BASE_URL_API + route, {
-  method,
-  headers: {
+const HttpHelper = (route, method, payload, isRefreshToken = false) => {
+  const cookies = new Cookies();
+  const tokens = cookies.get('tokens');
+  let headers = {
     'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(payload)
-});
+  };
+
+  if (tokens.token && !isRefreshToken) {
+    headers = {
+      ...headers,
+      Authorization: `Bearer ${tokens.token}`
+    };
+  } else if (tokens.refreshToken && isRefreshToken) {
+    headers = {
+      ...headers,
+      Authorization: `Bearer ${tokens.refreshToken}`
+    };
+  }
+
+  return fetch(Constants.BASE_URL_API + route, {
+    method,
+    headers,
+    body: JSON.stringify(payload)
+  });
+};
+
+export default HttpHelper;
