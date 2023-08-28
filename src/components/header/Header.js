@@ -31,6 +31,7 @@ const Header = () => {
 
     if (url.includes('/about')) setNavSelected('about');
     else if (url.includes('/projects')) setNavSelected('projects');
+    else if (url.includes('/login') || url.includes('/admin')) setNavSelected('');
     else setNavSelected('home');
   }, [locationChange]);
 

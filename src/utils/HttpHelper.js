@@ -10,22 +10,24 @@ import Constants from './Constants';
  * @param {Boolean} isRefreshToken object to send
  * @return {Promise} - Promise from the fetch call
  */
-const HttpHelper = (route, method, payload, isRefreshToken = false) => {
+const HttpHelper = async (route, method, payload, isRefreshToken = false) => {
   const cookies = new Cookies();
-  const tokens = cookies.get('tokens');
+  const token = cookies.get('token');
+  const refreshToken = cookies.get('refresh_token');
+
   let headers = {
     'Content-Type': 'application/json'
   };
 
-  if (tokens.token && !isRefreshToken) {
+  if (token && !isRefreshToken) {
     headers = {
       ...headers,
-      Authorization: `Bearer ${tokens.token}`
+      Authorization: `Bearer ${token}`
     };
-  } else if (tokens.refreshToken && isRefreshToken) {
+  } else if (refreshToken && isRefreshToken) {
     headers = {
       ...headers,
-      Authorization: `Bearer ${tokens.refreshToken}`
+      Authorization: `Bearer ${refreshToken}`
     };
   }
 

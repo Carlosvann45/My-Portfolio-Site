@@ -8,6 +8,7 @@ import About from '../about/About';
 import PageLayout from '../layouts/PageLayout';
 import AdminLayout from '../layouts/AdminLayout';
 import Home from '../home/Home';
+import Login from '../login/Login';
 
 /**
  * @name App
@@ -20,11 +21,12 @@ const App = () => (
       <Route path="/" element={<PageLayout />}>
         <Route exact path="/" element={<Home />} />
         <Route exact path="about" element={<About />} />
-        <Route exact path="login" element={<Home />} />
+        <Route path="admin" element={<AdminLayout />}>
+          <Route index element={<Home />} />
+          <Route exact path="login" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
-      </Route>
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route exact path="*" element={<Home />} />
       </Route>
     </Routes>
   </Router>
