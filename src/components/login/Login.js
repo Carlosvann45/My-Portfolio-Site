@@ -15,8 +15,8 @@ const Login = () => {
 
   /**
    * Handles form submit for login credentials
-   * 
-   * @param {Event} event 
+   *
+   * @param {Event} event
    */
   const onFormSubmit = async (event) => {
     event.preventDefault();
@@ -34,8 +34,8 @@ const Login = () => {
 
   /**
    * Handles input change for form
-   * 
-   * @param {Event} event 
+   *
+   * @param {Event} event
    */
   const onInputChange = (event) => {
     const input = event.target;

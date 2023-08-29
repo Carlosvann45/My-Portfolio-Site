@@ -49,7 +49,7 @@ export default class Common {
    * @name login
    * @description Handles sending login request to api and returns whether its
    * successful or not
-   * @param {Object} credentials 
+   * @param {Object} credentials
    * @returns boolean
    */
   static async login(credentials) {
