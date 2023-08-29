@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Home.module.css';
 
+/**
+ * @name Home
+ * @description home page
+ * @returns Home Page
+ */
 const Home = () => {
   const [reverse, setReverse] = useState(false);
   const [wordChanged, setWordChanged] = useState(true);

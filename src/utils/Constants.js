@@ -1,5 +1,6 @@
 /**
- * Constants to be used in application
+ * @name Constants
+ * @description Constants to be used in application
  */
 export default Object.freeze({
   BASE_URL_API: 'http://localhost:5000',

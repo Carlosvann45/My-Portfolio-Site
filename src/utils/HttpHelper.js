@@ -11,9 +11,10 @@ import Constants from './Constants';
  * @return {Promise} - Promise from the fetch call
  */
 const HttpHelper = async (route, method, payload, isRefreshToken = false) => {
-  const cookies = new Cookies();
+  const cookies = new Cookies(null, { path: '/' });
   const token = cookies.get('token');
   const refreshToken = cookies.get('refresh_token');
+  const body = payload && JSON.stringify(payload);
 
   let headers = {
     'Content-Type': 'application/json'
@@ -34,7 +35,7 @@ const HttpHelper = async (route, method, payload, isRefreshToken = false) => {
   return fetch(Constants.BASE_URL_API + route, {
     method,
     headers,
-    body: JSON.stringify(payload)
+    body
   });
 };
 

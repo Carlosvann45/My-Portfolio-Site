@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 /**
  * @name PageLayout
- * @description
+ * @description page layout for default pages
  * @returns PageLayout Page
  */
 const PageLayout = () => (

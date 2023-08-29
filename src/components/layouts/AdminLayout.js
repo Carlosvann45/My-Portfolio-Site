@@ -2,52 +2,41 @@ import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Cookies from 'universal-cookie';
-import HttpHelper from '../../utils/HttpHelper';
+import Common from '../../utils/Common';
 import classes from './PageLayout.module.css';
-import Constants from '../../utils/Constants';
 import 'react-toastify/dist/ReactToastify.css';
 
 /**
  * @name AdminLayout
- * @description
+ * @description admin layout for reroute
  * @returns AdminLayout Page
  */
 const AdminLayout = () => {
   const navigate = useNavigate();
+  const cookies = new Cookies(null, { path: '/' });
 
-  // handles redirect for authorization
+  // hadnles checking if valid for user authorization
   useEffect(() => {
     const checkTokens = async () => {
-      const cookies = new Cookies();
       const token = cookies.get('token');
       const refreshToken = cookies.get('refresh_token');
+      let isAuthorized = false;
 
       if (token && refreshToken) {
-        let response = await HttpHelper(Constants.VERIFY_TOKEN_ROUTE, 'GET');
-
-        if (response.status === 200) {
-          navigate('/admin');
-          return;
-        }
-
-        response = await HttpHelper(Constants.VERIFY_TOKEN_ROUTE, 'GET', {}, true);
-
-        if (response.status === 200) {
-          cookies.set('tokens', response);
-
-          navigate('/admin');
-
-          return;
-        }
+        isAuthorized = await Common.verifyTokens();
       }
 
-      navigate('/admin/login');
+      return isAuthorized;
     };
 
-    checkTokens().catch(() => {
-      navigate('/admin/login');
+    checkTokens().then((isAuthorized) => {
+      if (!isAuthorized) {
+        navigate('/login');
+
+        Common.showToast('Unauthorized access. Please Login', 'error');
+      }
     });
-  }, [navigate]);
+  });
 
   return (
     <div className={classes.siteContainer}>

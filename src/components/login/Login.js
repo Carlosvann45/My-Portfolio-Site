@@ -3,35 +3,40 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import Common from '../../utils/Common';
 import classes from './Login.module.css';
-import HttpHelper from '../../utils/HttpHelper';
-import Constants from '../../utils/Constants';
 
+/**
+ * @name Login
+ * @description login page
+ * @returns Login Page
+ */
 const Login = () => {
   const [loginCreds, setLoginCreds] = useState({});
   const navigate = useNavigate();
-  const cookies = new Cookies();
 
+  /**
+   * Handles form submit for login credentials
+   * 
+   * @param {Event} event 
+   */
   const onFormSubmit = async (event) => {
     event.preventDefault();
 
-    HttpHelper(Constants.LOGIN_ROUTE, 'POST', loginCreds)
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.token && res.refreshToken) {
-          cookies.set('token', res.token);
-          cookies.set('refresh_token', res.refreshToken);
+    const isLoggedIn = await Common.login(loginCreds);
 
-          Common.showToast('Login success', 'success');
+    if (isLoggedIn) {
+      navigate('/admin');
 
-          navigate('/admin');
-        } else {
-          Common.showToast('Invalid login credentials', 'error');
-        }
-      }).catch((err) => {
-        Common.showToast(err.message, 'error');
-      });
+      Common.showToast('Login Success.', 'success');
+    } else {
+      Common.showToast('Invalid login credentials.', 'error');
+    }
   };
 
+  /**
+   * Handles input change for form
+   * 
+   * @param {Event} event 
+   */
   const onInputChange = (event) => {
     const input = event.target;
 
@@ -41,9 +46,29 @@ const Login = () => {
     });
   };
 
+  /**
+   * Handles token validation for redirect to admin page
+   */
   useEffect(() => {
+    /**
+     * Handles checking if user is authorized
+     */
+    const checkIfAuthorized = async () => {
+      const cookies = new Cookies(null, { path: '/' });
+      const token = cookies.get('token');
+      const refreshToken = cookies.get('refresh_token');
 
-  }, []);
+      if (token && refreshToken) {
+        const isVerified = await Common.verifyTokens();
+
+        if (isVerified) {
+          navigate('/admin');
+        }
+      }
+    };
+
+    checkIfAuthorized();
+  }, [navigate]);
 
   return (
     <div className={classes.loginPageContainer}>

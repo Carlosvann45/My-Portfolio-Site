@@ -21,9 +21,9 @@ const App = () => (
       <Route path="/" element={<PageLayout />}>
         <Route exact path="/" element={<Home />} />
         <Route exact path="about" element={<About />} />
+        <Route exact path="login" element={<Login />} />
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<Home />} />
-          <Route exact path="login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="*" element={<NotFound />} />
