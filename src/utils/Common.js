@@ -70,7 +70,6 @@ export default class Common {
 
       loggedIn = false;
     } catch (err) {
-      console.log(err);
       loggedIn = false;
     }
 

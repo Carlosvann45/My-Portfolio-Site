@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import Cookies from 'universal-cookie';
 import Common from '../../utils/Common';
 import classes from './PageLayout.module.css';
@@ -43,7 +42,6 @@ const AdminLayout = () => {
       <div className={classes.pageContainer}>
         <Outlet />
       </div>
-      <ToastContainer />
     </div>
   );
 };

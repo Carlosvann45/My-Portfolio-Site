@@ -27,6 +27,10 @@ export default Object.freeze({
   EMAIL_FORMAT: 'Email must be in a valid email format.',
   SUBJECT_REQUIRED: 'Subject is a required field.',
   MESSAGE_REQUIRED: 'Message is a required field.',
+  USER_ROUTE: '/api/users',
+  EXPERINCE_ROUTE: '/api/experinces',
+  PROJECT_ROUTE: '/api/projects',
+  TECH_ROUTE: '/api/technologies',
   VERIFY_TOKEN_ROUTE: '/api/users/verify_token',
   REFRSH_ROUTE: '/api/users/refresh_token',
   LOGIN_ROUTE: '/api/users/login'

@@ -69,6 +69,11 @@ const Header = () => {
     saveYou.load();
     missYou.load();
 
+    adventure.pause();
+    moveMe.pause();
+    saveYou.pause();
+    missYou.pause();
+
     setSounds({
       adventure,
       moveMe,
