@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ExperinceTable from '../tables/ExperinceTable';
 import ProjectTable from '../tables/ProjectTable';
 import TechnologyTable from '../tables/TechnologyTable';
 import HttpHelper from '../../utils/HttpHelper';
 import Constants from '../../utils/Constants';
+import Common from '../../utils/Common';
 import classes from './AdminPage.module.css';
 
 /**
@@ -16,15 +18,16 @@ const AdminPage = () => {
   const [experinces, setExperinces] = useState([]);
   const [projects, setProjects] = useState([]);
   const [technologies, setTechnologies] = useState([]);
+  const navigate = useNavigate();
 
   const findTable = () => {
     if (isSelected === 1) {
-      return <ExperinceTable experinces={experinces} />;
+      return <ExperinceTable experinces={experinces} setExperinces={setExperinces} />;
     } if (isSelected === 2) {
-      return <ProjectTable projects={projects} />;
+      return <ProjectTable projects={projects} setProjects={setProjects} />;
     }
 
-    return <TechnologyTable technologies={technologies} />;
+    return <TechnologyTable technologies={technologies} setTechnologies={setTechnologies} />;
   };
 
   useEffect(() => {
@@ -42,12 +45,19 @@ const AdminPage = () => {
 
         setTechnologies(await techArr.json());
       } catch (err) {
-        window.location.reload(false);
+        const isVerified = await Common.verifyTokens();
+
+        if (isVerified) {
+          window.location.reload(false);
+        } else {
+          navigate('/login');
+          Common.showToast('Unauthorized access. Please Login', 'error');
+        }
       }
     };
 
     loadData();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className={classes.adminPageContainer}>
