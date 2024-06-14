@@ -662,8 +662,13 @@
 	cursor: pointer;
   }
 
-  .sendEmailBtn:active {
+  .sendEmailBtn:active:not():disabled {
 	box-shadow: none;
+  }
+
+  .sendEmailBtn:disabled {
+	opacity: 70%;
+	cursor: not-allowed;
   }
 
   .hideConfirmation {

@@ -32,6 +32,9 @@
 		"coverage": "react-scripts test --coverage --watchAll=false",
 		"lint": "eslint . --fix"
 	},
+	"pre-commit": [
+		"lint"
+	],
 	"eslintConfig": {
 		"extends": [
 			"react-app",
