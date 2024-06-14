@@ -36,7 +36,11 @@ const About = () => {
   const [reverse, setReverse] = useState(false);
   const [fullTitle] = useState(Constants.ABOUT_ME_TITLE);
   const [titleIndex, setTitleIndex] = useState(0);
-  const [contactInfo, setContactInfo] = useState({});
+  const [contactInfo, setContactInfo] = useState({
+    email: '',
+    subject: '',
+    message: ''
+  });
   const [isEmailSent, setIsEmailSent] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -146,6 +150,11 @@ const About = () => {
         setIsEmailSent(true);
 
         setTimeout(() => {
+          setContactInfo({
+            email: '',
+            subject: '',
+            message: ''
+          });
           setIsEmailSent(false);
         }, 7000);
       } else {

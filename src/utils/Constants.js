@@ -3,7 +3,7 @@
  * @description Constants to be used in application
  */
 export default Object.freeze({
-  BASE_URL_API: 'http://localhost:5000',
+  BASE_URL_API: 'https://carlos-santiago-portfolio-api.vercel.app',
   C_PLUS_ALT: 'C plus plus logo',
   C_SHARP_ALT: 'C sharp logo',
   HTML_ALT: 'HTML logo',
