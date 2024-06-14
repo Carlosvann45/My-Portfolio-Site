@@ -6,10 +6,10 @@ import {
 import NotFound from '../not-found/NotFound';
 import About from '../about/About';
 import PageLayout from '../layouts/PageLayout';
-import AdminLayout from '../layouts/AdminLayout';
 import Home from '../home/Home';
 import Login from '../login/Login';
-import AdminPage from '../admin/AdminPage';
+// import AdminLayout from '../layouts/AdminLayout';
+// import AdminPage from '../admin/AdminPage';
 
 /**
  * @name App
@@ -23,10 +23,10 @@ const App = () => (
         <Route exact path="/" element={<Home />} />
         <Route exact path="about" element={<About />} />
         <Route exact path="login" element={<Login />} />
-        <Route path="admin" element={<AdminLayout />}>
+        {/* <Route path="admin" element={<AdminLayout />}>
           <Route index element={<AdminPage />} />
           <Route path="*" element={<NotFound />} />
-        </Route>
+        </Route> */}
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

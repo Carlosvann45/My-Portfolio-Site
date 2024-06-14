@@ -18,6 +18,8 @@ import PostgresqlLogo from '../images/postgresql.png';
 import ReactLogo from '../images/react.png';
 import SpringBootLogo from '../images/springboot.png';
 import PicterOfMe from '../images/picture-of-me.jpg';
+import sendEmail from './Email.service';
+import Common from '../../utils/Common';
 
 /**
  * @name About
@@ -138,12 +140,17 @@ const About = () => {
 
     if (await isContactInfoValid()) {
       // send email
+      const res = await sendEmail(contactInfo);
 
-      setIsEmailSent(true);
+      if (res?.sent) {
+        setIsEmailSent(true);
 
-      setTimeout(() => {
-        setIsEmailSent(false);
-      }, 7000);
+        setTimeout(() => {
+          setIsEmailSent(false);
+        }, 7000);
+      } else {
+        Common.showToast(res.message, 'error');
+      }
     }
   };
 

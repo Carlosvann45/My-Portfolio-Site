@@ -9,7 +9,7 @@ import classes from './Home.module.css';
 const Home = () => {
   const [reverse, setReverse] = useState(false);
   const [wordChanged, setWordChanged] = useState(true);
-  const [words] = useState(['Developer', 'Musician', 'Designer', 'Entrepreneur']);
+  const [words] = useState(['Engineer', 'Musician', 'Designer', 'Entrepreneur']);
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
 

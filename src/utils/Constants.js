@@ -33,5 +33,7 @@ export default Object.freeze({
   TECH_ROUTE: '/api/technologies',
   VERIFY_TOKEN_ROUTE: '/api/users/verify_token',
   REFRSH_ROUTE: '/api/users/refresh_token',
-  LOGIN_ROUTE: '/api/users/login'
+  LOGIN_ROUTE: '/api/users/login',
+  EMAIL_ROUTE: '/api/emails',
+  POST: 'POST'
 });
