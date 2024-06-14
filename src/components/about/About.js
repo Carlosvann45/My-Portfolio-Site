@@ -42,40 +42,10 @@ const About = () => {
     message: ''
   });
   const [isEmailSent, setIsEmailSent] = useState(false);
-  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-  const [isError, setIsError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
   const [isSubjectError, setIsSubjectError] = useState(false);
   const [isMessageError, setIsMessageError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState({
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  /**
-   * @name removeErrorMessage
-   * @description sets usestate to not show message box
-   */
-  const removeErrorMessage = () => {
-    setTimeout(() => {
-      setIsError(false);
-
-      setTimeout(() => {
-        setErrorMessage({});
-        setIsBtnDisabled(false);
-      }, 1000);
-    }, 5000);
-  };
-
-  /**
-   * @name showErrorMessage
-   * @description sets usestate to show message box
-   */
-  const showErrorMessage = () => {
-    setIsError(true);
-    setIsBtnDisabled(true);
-  };
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
 
   /**
    * @name mapErrors
@@ -114,18 +84,19 @@ const About = () => {
         const errors = mapErrors(error.errors);
 
         if (errors.email) {
-          setErrorMessage({ message: errors.email });
           setIsEmailError(true);
-        } else if (errors.subject) {
-          setErrorMessage({ message: errors.subject });
-          setIsSubjectError(true);
-        } else {
-          setErrorMessage({ message: errors.message });
-          setIsMessageError(true);
+          Common.showToast(errors.email, 'error');
         }
 
-        removeErrorMessage();
-        showErrorMessage();
+        if (errors.subject) {
+          setIsSubjectError(true);
+          Common.showToast(errors.subject, 'error');
+        }
+
+        if (errors.message) {
+          setIsMessageError(true);
+          Common.showToast(errors.message, 'error');
+        }
 
         validationResult = false;
       });
@@ -138,6 +109,7 @@ const About = () => {
    * @description  validates sends email if information is correct
    */
   const sendAndValidateEmail = async () => {
+    setIsBtnDisabled(true);
     setIsEmailError(false);
     setIsSubjectError(false);
     setIsMessageError(false);
@@ -161,6 +133,10 @@ const About = () => {
         Common.showToast(res.message, 'error');
       }
     }
+
+    setTimeout(() => {
+      setIsBtnDisabled(false);
+    }, 5000);
   };
 
   /**
@@ -407,9 +383,6 @@ const About = () => {
               cols="25"
             />
           </label>
-          <p className={`${classes.hideError} ${isError ? classes.errorMessage : ''}`}>
-            <span>{errorMessage.message}</span>
-          </p>
           <div className={`${classes.btnContainer} ${isEmailSent ? classes.hideBtn : ''}`}>
             <button
               className={classes.sendEmailBtn}

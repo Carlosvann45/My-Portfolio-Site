@@ -9,12 +9,10 @@ const sendEmail = async (body) => HttpHelper(Constants.EMAIL_ROUTE, Constants.PO
         sent: false,
         message: res.message
       };
-    } if (res.status === 200) {
-      return {
-        sent: true
-      };
     }
-    throw Error();
+    return {
+      sent: true
+    };
   })
   .catch(() => ({
     sent: false,

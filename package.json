@@ -26,7 +26,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "rimraf build && react-scripts build",
+		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"coverage": "react-scripts test --coverage --watchAll=false",
@@ -34,9 +34,7 @@
 		"add-build": "git add build"
 	},
 	"pre-commit": [
-		"lint",
-		"build",
-		"add-build"
+		"lint"
 	],
 	"eslintConfig": {
 		"extends": [
