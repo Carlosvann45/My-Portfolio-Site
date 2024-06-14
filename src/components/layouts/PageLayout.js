@@ -1,11 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Header from '../header/Header';
 import classes from './PageLayout.module.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 /**
  * @name PageLayout
- * @description
+ * @description page layout for default pages
  * @returns PageLayout Page
  */
 const PageLayout = () => (
@@ -14,6 +16,7 @@ const PageLayout = () => (
     <div className={classes.pageContainer}>
       <Outlet />
     </div>
+    <ToastContainer />
   </div>
 );
 

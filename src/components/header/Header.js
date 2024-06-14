@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Constants from '../../utils/Constants';
 import SelectIcon from '../images/caret-up-solid.svg';
+import NavIcon from '../images/bars-solid.svg';
 import Adventure from '../audio/roa-music-adventure.mp3';
 import MoveMe from '../audio/liqwyd-move-me.mp3';
 import SaveYou from '../audio/liqwyd-save-you.mp3';
@@ -29,7 +30,8 @@ const Header = () => {
     const url = window.location.href;
 
     if (url.includes('/about')) setNavSelected('about');
-    else if (url.includes('/experince')) setNavSelected('experince');
+    else if (url.includes('/projects')) setNavSelected('projects');
+    else if (url.includes('/login') || url.includes('/admin')) setNavSelected('');
     else setNavSelected('home');
   }, [locationChange]);
 
@@ -57,11 +59,20 @@ const Header = () => {
     moveMe.autoplay = true;
     saveYou.autoplay = true;
     missYou.autoplay = true;
+    adventure.volume = 0.1;
+    moveMe.volume = 0.1;
+    saveYou.volume = 0.1;
+    missYou.volume = 0.1;
 
     adventure.load();
     moveMe.load();
     saveYou.load();
     missYou.load();
+
+    adventure.pause();
+    moveMe.pause();
+    saveYou.pause();
+    missYou.pause();
 
     setSounds({
       adventure,
@@ -202,8 +213,8 @@ const Header = () => {
         </div>
         <button type="button" className={classes.imgNavBtn} onClick={() => setShowNav(!showNav)}>
           <img
-            src={SelectIcon}
-            className={showNav ? classes.musicSelector : classes.musicSelectorOpen}
+            src={NavIcon}
+            className={classes.navIcon}
             alt={Constants.MUSIC_SELECTOR_ALT}
           />
 
@@ -230,10 +241,10 @@ const Header = () => {
           <li className={classes.bottomItem}>
             <button
               type="button"
-              className={navSelected === 'experince' ? classes.navSelected : classes.navLink}
-              onClick={() => { setLocationChange(!locationChange); navigate('/experince'); }}
+              className={navSelected === 'projects' ? classes.navSelected : classes.navLink}
+              onClick={() => { setLocationChange(!locationChange); navigate('/projects'); }}
             >
-              Experince
+              Projects
             </button>
           </li>
         </ul>

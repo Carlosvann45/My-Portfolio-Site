@@ -18,6 +18,8 @@ import PostgresqlLogo from '../images/postgresql.png';
 import ReactLogo from '../images/react.png';
 import SpringBootLogo from '../images/springboot.png';
 import PicterOfMe from '../images/picture-of-me.jpg';
+import sendEmail from './Email.service';
+import Common from '../../utils/Common';
 
 /**
  * @name About
@@ -34,7 +36,11 @@ const About = () => {
   const [reverse, setReverse] = useState(false);
   const [fullTitle] = useState(Constants.ABOUT_ME_TITLE);
   const [titleIndex, setTitleIndex] = useState(0);
-  const [contactInfo, setContactInfo] = useState({});
+  const [contactInfo, setContactInfo] = useState({
+    email: '',
+    subject: '',
+    message: ''
+  });
   const [isEmailSent, setIsEmailSent] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -138,12 +144,22 @@ const About = () => {
 
     if (await isContactInfoValid()) {
       // send email
+      const res = await sendEmail(contactInfo);
 
-      setIsEmailSent(true);
+      if (res?.sent) {
+        setIsEmailSent(true);
 
-      setTimeout(() => {
-        setIsEmailSent(false);
-      }, 7000);
+        setTimeout(() => {
+          setContactInfo({
+            email: '',
+            subject: '',
+            message: ''
+          });
+          setIsEmailSent(false);
+        }, 7000);
+      } else {
+        Common.showToast(res.message, 'error');
+      }
     }
   };
 
