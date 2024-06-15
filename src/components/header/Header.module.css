@@ -232,7 +232,7 @@
 
 .navLink::after {
 	opacity: 0;
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -248,7 +248,7 @@
 
 .navLink:hover::after {
 	opacity: 1;
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -279,7 +279,7 @@
 
 .navSelected::after {
 	opacity: 1;
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;

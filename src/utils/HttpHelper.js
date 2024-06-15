@@ -1,5 +1,5 @@
-import Cookies from 'universal-cookie';
-import Constants from './Constants';
+import Cookies from "universal-cookie";
+import Constants from "./Constants";
 
 /**
  * @name HttpHelper
@@ -11,31 +11,31 @@ import Constants from './Constants';
  * @return {Promise} - Promise from the fetch call
  */
 const HttpHelper = async (route, method, payload, isRefreshToken = false) => {
-  const cookies = new Cookies(null, { path: '/' });
-  const token = cookies.get('token');
-  const refreshToken = cookies.get('refresh_token');
+  const cookies = new Cookies(null, { path: "/" });
+  const token = cookies.get("token");
+  const refreshToken = cookies.get("refresh_token");
   const body = payload && JSON.stringify(payload);
 
   let headers = {
-    'Content-Type': 'application/json'
+    "Content-Type": "application/json",
   };
 
   if (token && !isRefreshToken) {
     headers = {
       ...headers,
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     };
   } else if (refreshToken && isRefreshToken) {
     headers = {
       ...headers,
-      Authorization: `Bearer ${refreshToken}`
+      Authorization: `Bearer ${refreshToken}`,
     };
   }
 
   return fetch(Constants.BASE_URL_API + route, {
     method,
     headers,
-    body
+    body,
   });
 };
 

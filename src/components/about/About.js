@@ -1,25 +1,23 @@
-import React, {
-  useEffect, useState, useRef
-} from 'react';
-import * as yup from 'yup';
-import classes from './About.module.css';
-import Constants from '../../utils/Constants';
-import CPluslogo from '../images/c-plus-plus.png';
-import CSharpLogo from '../images/c-sharp.png';
-import HtmlLogo from '../images/html5.png';
-import CssLogo from '../images/css3.png';
-import JavaScriptLogo from '../images/javascript.png';
-import JavaLogo from '../images/java.png';
-import KotlinLogo from '../images/kotlin.png';
-import PythonLogo from '../images/python.png';
-import AndroidLogo from '../images/android.png';
-import DotNetLogo from '../images/dot-net.png';
-import PostgresqlLogo from '../images/postgresql.png';
-import ReactLogo from '../images/react.png';
-import SpringBootLogo from '../images/springboot.png';
-import PicterOfMe from '../images/picture-of-me.jpg';
-import sendEmail from './Email.service';
-import Common from '../../utils/Common';
+import React, { useEffect, useState, useRef } from "react";
+import * as yup from "yup";
+import classes from "./About.module.css";
+import Constants from "../../utils/Constants";
+import CPluslogo from "../images/c-plus-plus.png";
+import CSharpLogo from "../images/c-sharp.png";
+import HtmlLogo from "../images/html5.png";
+import CssLogo from "../images/css3.png";
+import JavaScriptLogo from "../images/javascript.png";
+import JavaLogo from "../images/java.png";
+import KotlinLogo from "../images/kotlin.png";
+import PythonLogo from "../images/python.png";
+import AndroidLogo from "../images/android.png";
+import DotNetLogo from "../images/dot-net.png";
+import PostgresqlLogo from "../images/postgresql.png";
+import ReactLogo from "../images/react.png";
+import SpringBootLogo from "../images/springboot.png";
+import PicterOfMe from "../images/picture-of-me.jpg";
+import sendEmail from "./Email.service";
+import Common from "../../utils/Common";
 
 /**
  * @name About
@@ -37,9 +35,9 @@ const About = () => {
   const [fullTitle] = useState(Constants.ABOUT_ME_TITLE);
   const [titleIndex, setTitleIndex] = useState(0);
   const [contactInfo, setContactInfo] = useState({
-    email: '',
-    subject: '',
-    message: ''
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isEmailSent, setIsEmailSent] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
@@ -57,9 +55,12 @@ const About = () => {
     let newErrors = {};
 
     array.forEach((error) => {
-      if (error.toLowerCase().includes('email')) newErrors = { ...newErrors, email: error };
-      else if (error.toLowerCase().includes('subject'))newErrors = { ...newErrors, subject: error };
-      else if (error.toLowerCase().includes('message')) newErrors = { ...newErrors, message: error };
+      if (error.toLowerCase().includes("email"))
+        newErrors = { ...newErrors, email: error };
+      else if (error.toLowerCase().includes("subject"))
+        newErrors = { ...newErrors, subject: error };
+      else if (error.toLowerCase().includes("message"))
+        newErrors = { ...newErrors, message: error };
     });
 
     return newErrors;
@@ -72,30 +73,34 @@ const About = () => {
    */
   const isContactInfoValid = async () => {
     const conatctInfoSchema = yup.object().shape({
-      email: yup.string().required(Constants.EMAIL_REQUIRED).email(Constants.EMAIL_FORMAT),
+      email: yup
+        .string()
+        .required(Constants.EMAIL_REQUIRED)
+        .email(Constants.EMAIL_FORMAT),
       subject: yup.string().required(Constants.SUBJECT_REQUIRED),
-      message: yup.string().required(Constants.MESSAGE_REQUIRED)
+      message: yup.string().required(Constants.MESSAGE_REQUIRED),
     });
 
     let validationResult = true;
 
-    await conatctInfoSchema.validate(contactInfo, { abortEarly: false })
+    await conatctInfoSchema
+      .validate(contactInfo, { abortEarly: false })
       .catch((error) => {
         const errors = mapErrors(error.errors);
 
         if (errors.email) {
           setIsEmailError(true);
-          Common.showToast(errors.email, 'error');
+          Common.showToast(errors.email, "error");
         }
 
         if (errors.subject) {
           setIsSubjectError(true);
-          Common.showToast(errors.subject, 'error');
+          Common.showToast(errors.subject, "error");
         }
 
         if (errors.message) {
           setIsMessageError(true);
-          Common.showToast(errors.message, 'error');
+          Common.showToast(errors.message, "error");
         }
 
         validationResult = false;
@@ -123,14 +128,14 @@ const About = () => {
 
         setTimeout(() => {
           setContactInfo({
-            email: '',
-            subject: '',
-            message: ''
+            email: "",
+            subject: "",
+            message: "",
           });
           setIsEmailSent(false);
         }, 7000);
       } else {
-        Common.showToast(res.message, 'error');
+        Common.showToast(res.message, "error");
       }
     }
 
@@ -171,9 +176,12 @@ const About = () => {
 
     // handles removing an index or adding index
     // to display the text
-    setTimeout(() => {
-      setTitleIndex(titleIndex + (reverse ? -1 : 1));
-    }, (reverse ? 75 : 150));
+    setTimeout(
+      () => {
+        setTitleIndex(titleIndex + (reverse ? -1 : 1));
+      },
+      reverse ? 75 : 150,
+    );
   });
 
   useEffect(() => {
@@ -181,13 +189,13 @@ const About = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           switch (entry.target.id) {
-            case 'techSliderTitle':
+            case "techSliderTitle":
               setIsTechTitleInView(true);
               break;
-            case 'codeSliderTitle':
+            case "codeSliderTitle":
               setIsCodeTitleInView(true);
               break;
-            case 'contactTitle':
+            case "contactTitle":
               setIsContactTitleInView(true);
               break;
             default:
@@ -208,7 +216,9 @@ const About = () => {
   return (
     <div className={classes.aboutPage}>
       <div className={classes.aboutTitleContainer}>
-        <h1 className={classes.aboutTitle}>{fullTitle.substring(0, titleIndex)}</h1>
+        <h1 className={classes.aboutTitle}>
+          {fullTitle.substring(0, titleIndex)}
+        </h1>
       </div>
       <section className={classes.allDescriptions}>
         <div className={classes.descriptionContainer}>
@@ -217,18 +227,24 @@ const About = () => {
             src={PicterOfMe}
             alt={Constants.PICTURE_OF_ME_ALT}
           />
-          <p className={classes.aboutDescription}>{Constants.ABOUT_ME_DESCRIPTION}</p>
+          <p className={classes.aboutDescription}>
+            {Constants.ABOUT_ME_DESCRIPTION}
+          </p>
         </div>
         <div className={classes.descriptionContainer2}>
-          <p className={classes.aboutDescription2}>{Constants.ABOUT_ME_DESCRIPTION2}</p>
+          <p className={classes.aboutDescription2}>
+            {Constants.ABOUT_ME_DESCRIPTION2}
+          </p>
         </div>
         <div className={classes.descriptionContainer3}>
-          <p className={classes.aboutDescription3}>{Constants.ABOUT_ME_DESCRIPTION3}</p>
+          <p className={classes.aboutDescription3}>
+            {Constants.ABOUT_ME_DESCRIPTION3}
+          </p>
         </div>
       </section>
       <h2
         id="techSliderTitle"
-        className={`${classes.hidden} ${isTechTitleInView ? classes.sliderTitle_tech : ''}`}
+        className={`${classes.hidden} ${isTechTitleInView ? classes.sliderTitle_tech : ""}`}
         ref={techSliderTitle}
       >
         <span>
@@ -239,7 +255,7 @@ const About = () => {
       </h2>
       <section className={classes.techSlider}>
         <div className={classes.slider_tech}>
-          <span style={{ '--i': 1 }} className={classes.imageContainer_tech}>
+          <span style={{ "--i": 1 }} className={classes.imageContainer_tech}>
             <img
               className={classes.sliderImage_tech}
               src={AndroidLogo}
@@ -247,7 +263,7 @@ const About = () => {
             />
             <div className={classes.ovalShadow_tech} />
           </span>
-          <span style={{ '--i': 2 }} className={classes.imageContainer_tech}>
+          <span style={{ "--i": 2 }} className={classes.imageContainer_tech}>
             <img
               className={classes.sliderImage_tech}
               src={DotNetLogo}
@@ -255,7 +271,7 @@ const About = () => {
             />
             <div className={classes.ovalShadow_tech} />
           </span>
-          <span style={{ '--i': 3 }} className={classes.imageContainer_tech}>
+          <span style={{ "--i": 3 }} className={classes.imageContainer_tech}>
             <img
               className={classes.sliderImage_tech}
               src={PostgresqlLogo}
@@ -263,11 +279,15 @@ const About = () => {
             />
             <div className={classes.ovalShadow_tech} />
           </span>
-          <span style={{ '--i': 4 }} className={classes.imageContainer_tech}>
-            <img className={classes.sliderImage_tech} src={ReactLogo} alt={Constants.REACT_LOGO} />
+          <span style={{ "--i": 4 }} className={classes.imageContainer_tech}>
+            <img
+              className={classes.sliderImage_tech}
+              src={ReactLogo}
+              alt={Constants.REACT_LOGO}
+            />
             <div className={classes.ovalShadow_tech} />
           </span>
-          <span style={{ '--i': 5 }} className={classes.imageContainer_tech}>
+          <span style={{ "--i": 5 }} className={classes.imageContainer_tech}>
             <img
               className={classes.sliderImage_tech}
               src={SpringBootLogo}
@@ -279,7 +299,7 @@ const About = () => {
       </section>
       <h2
         id="codeSliderTitle"
-        className={`${classes.hidden} ${isCodeTitleInView ? classes.sliderTitle_code : ''}`}
+        className={`${classes.hidden} ${isCodeTitleInView ? classes.sliderTitle_code : ""}`}
         ref={codeSliderTitle}
       >
         <span>
@@ -289,11 +309,15 @@ const About = () => {
       </h2>
       <section className={classes.codeSlider}>
         <div className={classes.slider_code}>
-          <span style={{ '--i': 1 }} className={classes.imageContainer_code}>
-            <img className={classes.sliderImage_code} src={CPluslogo} alt={Constants.C_PLUS_ALT} />
+          <span style={{ "--i": 1 }} className={classes.imageContainer_code}>
+            <img
+              className={classes.sliderImage_code}
+              src={CPluslogo}
+              alt={Constants.C_PLUS_ALT}
+            />
             <div className={classes.ovalShadow_code} />
           </span>
-          <span style={{ '--i': 2 }} className={classes.imageContainer_code}>
+          <span style={{ "--i": 2 }} className={classes.imageContainer_code}>
             <img
               className={classes.sliderImage_code}
               src={CSharpLogo}
@@ -301,15 +325,23 @@ const About = () => {
             />
             <div className={classes.ovalShadow_code} />
           </span>
-          <span style={{ '--i': 3 }} className={classes.imageContainer_code}>
-            <img className={classes.sliderImage_code} src={HtmlLogo} alt={Constants.HTML_ALT} />
+          <span style={{ "--i": 3 }} className={classes.imageContainer_code}>
+            <img
+              className={classes.sliderImage_code}
+              src={HtmlLogo}
+              alt={Constants.HTML_ALT}
+            />
             <div className={classes.ovalShadow_code} />
           </span>
-          <span style={{ '--i': 4 }} className={classes.imageContainer_code}>
-            <img className={classes.sliderImage_code} src={CssLogo} alt={Constants.CSS_ALT} />
+          <span style={{ "--i": 4 }} className={classes.imageContainer_code}>
+            <img
+              className={classes.sliderImage_code}
+              src={CssLogo}
+              alt={Constants.CSS_ALT}
+            />
             <div className={classes.ovalShadow_code} />
           </span>
-          <span style={{ '--i': 5 }} className={classes.imageContainer_code}>
+          <span style={{ "--i": 5 }} className={classes.imageContainer_code}>
             <img
               className={classes.sliderImage_code}
               src={JavaScriptLogo}
@@ -317,65 +349,86 @@ const About = () => {
             />
             <div className={classes.ovalShadow_code} />
           </span>
-          <span style={{ '--i': 6 }} className={classes.imageContainer_code}>
-            <img className={classes.sliderImage_code} src={JavaLogo} alt={Constants.JAVA_ALT} />
+          <span style={{ "--i": 6 }} className={classes.imageContainer_code}>
+            <img
+              className={classes.sliderImage_code}
+              src={JavaLogo}
+              alt={Constants.JAVA_ALT}
+            />
             <div className={classes.ovalShadow_code} />
           </span>
-          <span style={{ '--i': 7 }} className={classes.imageContainer_code}>
-            <img className={classes.sliderImage_code} src={KotlinLogo} alt={Constants.KOTLIN_ALT} />
+          <span style={{ "--i": 7 }} className={classes.imageContainer_code}>
+            <img
+              className={classes.sliderImage_code}
+              src={KotlinLogo}
+              alt={Constants.KOTLIN_ALT}
+            />
             <div className={classes.ovalShadow_code} />
           </span>
-          <span style={{ '--i': 8 }} className={classes.imageContainer_code}>
-            <img className={classes.sliderImage_code} src={PythonLogo} alt={Constants.PYTHON_ALT} />
+          <span style={{ "--i": 8 }} className={classes.imageContainer_code}>
+            <img
+              className={classes.sliderImage_code}
+              src={PythonLogo}
+              alt={Constants.PYTHON_ALT}
+            />
             <div className={classes.ovalShadow_code} />
           </span>
         </div>
       </section>
       <h2
         id="contactTitle"
-        className={`${classes.hidden} ${isContactTitleInView ? classes.contactTitle : ''}`}
+        className={`${classes.hidden} ${isContactTitleInView ? classes.contactTitle : ""}`}
         ref={contactTitle}
       >
         <span>
-          <span>
-            Contact
-          </span>
+          <span>Contact</span>
           Information
         </span>
       </h2>
       <section className={classes.contactFormContainer}>
         <div className={classes.contactForm}>
           <div className={classes.contactDescriptionContainer}>
-            <p className={classes.contactDescription}>{Constants.CONTACT_DESCRIPTION}</p>
+            <p className={classes.contactDescription}>
+              {Constants.CONTACT_DESCRIPTION}
+            </p>
           </div>
-          <label className={`${classes.emailContainer} ${isEmailSent ? classes.hideEmail : ''}`} htmlFor="emailInput">
+          <label
+            className={`${classes.emailContainer} ${isEmailSent ? classes.hideEmail : ""}`}
+            htmlFor="emailInput"
+          >
             <span className={classes.emailTitle}>Email</span>
             <input
               id="email"
               onChange={handleChange}
-              className={`${classes.emailInput} ${isEmailError ? classes.inputError : ''}`}
+              className={`${classes.emailInput} ${isEmailError ? classes.inputError : ""}`}
               value={contactInfo.email}
               type="email"
               name="emailInput"
             />
           </label>
-          <label className={`${classes.subjectContainer} ${isEmailSent ? classes.hideSubject : ''}`} htmlFor="subjectInput">
+          <label
+            className={`${classes.subjectContainer} ${isEmailSent ? classes.hideSubject : ""}`}
+            htmlFor="subjectInput"
+          >
             <span className={classes.subjectTitle}>Subject</span>
             <input
               id="subject"
               onChange={handleChange}
-              className={`${classes.subjectInput} ${isSubjectError ? classes.inputError : ''}`}
+              className={`${classes.subjectInput} ${isSubjectError ? classes.inputError : ""}`}
               value={contactInfo.subject}
               maxLength="68"
               type="text"
               name="subjectInput"
             />
           </label>
-          <label className={`${classes.messageContainer} ${isEmailSent ? classes.hideMessage : ''}`} htmlFor="emailMessage">
+          <label
+            className={`${classes.messageContainer} ${isEmailSent ? classes.hideMessage : ""}`}
+            htmlFor="emailMessage"
+          >
             <span className={classes.messageTitle}>Message</span>
             <textarea
               id="message"
-              className={`${classes.messageInput} ${isMessageError ? classes.inputError : ''}`}
+              className={`${classes.messageInput} ${isMessageError ? classes.inputError : ""}`}
               onChange={handleChange}
               value={contactInfo.message}
               name="emailMessage"
@@ -383,7 +436,9 @@ const About = () => {
               cols="25"
             />
           </label>
-          <div className={`${classes.btnContainer} ${isEmailSent ? classes.hideBtn : ''}`}>
+          <div
+            className={`${classes.btnContainer} ${isEmailSent ? classes.hideBtn : ""}`}
+          >
             <button
               className={classes.sendEmailBtn}
               onClick={() => sendAndValidateEmail()}
@@ -393,10 +448,13 @@ const About = () => {
               Send
             </button>
           </div>
-          <div className={`${classes.hideConfirmation} ${isEmailSent ? classes.showConfirmation : ''}`}>
+          <div
+            className={`${classes.hideConfirmation} ${isEmailSent ? classes.showConfirmation : ""}`}
+          >
             <h3 className={classes.confirmationTitle}>Thank you!</h3>
             <p className={classes.confirmationText}>
-              Your email has been sent. I will get back to you as soon as possible.
+              Your email has been sent. I will get back to you as soon as
+              possible.
             </p>
           </div>
         </div>

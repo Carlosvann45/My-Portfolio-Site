@@ -1,12 +1,12 @@
-import React, { useMemo, useState } from 'react';
-import { FaEye, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
-import { IconContext } from 'react-icons';
-import { useNavigate } from 'react-router-dom';
-import Model from '../model/Model';
-import HttpHelper from '../../utils/HttpHelper';
-import Common from '../../utils/Common';
-import Constants from '../../utils/Constants';
-import classes from './Table.module.css';
+import React, { useMemo, useState } from "react";
+import { FaEye, FaPencilAlt, FaTrashAlt } from "react-icons/fa";
+import { IconContext } from "react-icons";
+import { useNavigate } from "react-router-dom";
+import Model from "../model/Model";
+import HttpHelper from "../../utils/HttpHelper";
+import Common from "../../utils/Common";
+import Constants from "../../utils/Constants";
+import classes from "./Table.module.css";
 
 /**
  * @name ProjectTable
@@ -15,7 +15,7 @@ import classes from './Table.module.css';
  */
 const ProjectTable = ({ projects, setProjects }) => {
   const [view, setView] = useState(false);
-  const [mode, setMode] = useState('');
+  const [mode, setMode] = useState("");
   const [inputArr, setInputArr] = useState([]);
   const projecteArr = useMemo(() => projects, [projects]);
   const iconStyle = useMemo(() => ({ className: classes.reactIcon }), []);
@@ -30,22 +30,27 @@ const ProjectTable = ({ projects, setProjects }) => {
     const isVerified = await Common.verifyTokens();
 
     if (isVerified) {
-      await HttpHelper(`${Constants.PROJECT_ROUTE}/${project._id}`, 'DELETE')
+      await HttpHelper(`${Constants.PROJECT_ROUTE}/${project._id}`, "DELETE")
         .then((res) => {
           if (!res.ok) {
             throw new Error();
           }
         })
         .then(() => {
-          setProjects(projecteArr.filter((oldProject) => oldProject._id !== project._id));
-          Common.showToast('Project successfully deleted.', 'success');
+          setProjects(
+            projecteArr.filter((oldProject) => oldProject._id !== project._id),
+          );
+          Common.showToast("Project successfully deleted.", "success");
         })
         .catch(() => {
-          Common.showToast('There was an error deleteing project. Please try again later.', 'error');
+          Common.showToast(
+            "There was an error deleteing project. Please try again later.",
+            "error",
+          );
         });
     } else {
-      navigate('/login');
-      Common.showToast('Unauthorized access. Please Login', 'error');
+      navigate("/login");
+      Common.showToast("Unauthorized access. Please Login", "error");
     }
   };
 
@@ -54,27 +59,27 @@ const ProjectTable = ({ projects, setProjects }) => {
 
     const newInputArr = [];
     const title = {
-      title: 'Title',
-      name: 'title',
-      value: ''
+      title: "Title",
+      name: "title",
+      value: "",
     };
     const description = {
-      title: 'Description',
-      name: 'description',
-      value: ''
+      title: "Description",
+      name: "description",
+      value: "",
     };
     const link = {
-      title: 'Link',
-      name: 'link',
-      value: ''
+      title: "Link",
+      name: "link",
+      value: "",
     };
     const images = {
-      title: 'Images',
-      name: 'images',
-      value: ''
+      title: "Images",
+      name: "images",
+      value: "",
     };
 
-    if (newMode !== 'add') {
+    if (newMode !== "add") {
       title.value = project.title;
       description.value = project.description;
       link.value = project.link;
@@ -82,14 +87,14 @@ const ProjectTable = ({ projects, setProjects }) => {
     }
 
     switch (newMode) {
-      case 'add':
-      case 'edit':
+      case "add":
+      case "edit":
         newInputArr.push(title);
         newInputArr.push(description);
         newInputArr.push(link);
         newInputArr.push(images);
         break;
-      case 'view':
+      case "view":
         newInputArr.push(images);
         break;
       default:
@@ -131,56 +136,73 @@ const ProjectTable = ({ projects, setProjects }) => {
             </tr>
           </thead>
           <tbody>
-            {!!projecteArr.length && projecteArr.map((project) => (
-              <tr key={project._id}>
-                <td>
-                  <p>
-                    {project._id}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    {project.title}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    {project.description}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    {project.link}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <IconContext.Provider value={iconStyle}>
-                      <button className={classes.iconBtn} type="button" onClick={() => openModel(project, 'view')}><FaEye /></button>
-                    </IconContext.Provider>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <IconContext.Provider value={iconStyle}>
-                      <button className={classes.iconBtn} type="button" onClick={() => openModel(project, 'edit')}><FaPencilAlt /></button>
-                    </IconContext.Provider>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <IconContext.Provider value={iconStyle}>
-                      <button className={classes.iconBtn} type="button" onClick={() => deleteProject(project)}><FaTrashAlt /></button>
-                    </IconContext.Provider>
-                  </p>
-                </td>
-              </tr>
-            ))}
+            {!!projecteArr.length &&
+              projecteArr.map((project) => (
+                <tr key={project._id}>
+                  <td>
+                    <p>{project._id}</p>
+                  </td>
+                  <td>
+                    <p>{project.title}</p>
+                  </td>
+                  <td>
+                    <p>{project.description}</p>
+                  </td>
+                  <td>
+                    <p>{project.link}</p>
+                  </td>
+                  <td>
+                    <p>
+                      <IconContext.Provider value={iconStyle}>
+                        <button
+                          className={classes.iconBtn}
+                          type="button"
+                          onClick={() => openModel(project, "view")}
+                        >
+                          <FaEye />
+                        </button>
+                      </IconContext.Provider>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <IconContext.Provider value={iconStyle}>
+                        <button
+                          className={classes.iconBtn}
+                          type="button"
+                          onClick={() => openModel(project, "edit")}
+                        >
+                          <FaPencilAlt />
+                        </button>
+                      </IconContext.Provider>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <IconContext.Provider value={iconStyle}>
+                        <button
+                          className={classes.iconBtn}
+                          type="button"
+                          onClick={() => deleteProject(project)}
+                        >
+                          <FaTrashAlt />
+                        </button>
+                      </IconContext.Provider>
+                    </p>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
       <div className={classes.btnContainer}>
-        <button className={classes.addBtn} type="button" onClick={() => openModel({}, 'add')}>Add</button>
+        <button
+          className={classes.addBtn}
+          type="button"
+          onClick={() => openModel({}, "add")}
+        >
+          Add
+        </button>
       </div>
       <Model
         title="Experince"

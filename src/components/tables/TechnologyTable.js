@@ -1,12 +1,12 @@
-import React, { useMemo, useState } from 'react';
-import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
-import { IconContext } from 'react-icons';
-import { useNavigate } from 'react-router-dom';
-import Model from '../model/Model';
-import classes from './Table.module.css';
-import Common from '../../utils/Common';
-import HttpHelper from '../../utils/HttpHelper';
-import Constants from '../../utils/Constants';
+import React, { useMemo, useState } from "react";
+import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
+import { IconContext } from "react-icons";
+import { useNavigate } from "react-router-dom";
+import Model from "../model/Model";
+import classes from "./Table.module.css";
+import Common from "../../utils/Common";
+import HttpHelper from "../../utils/HttpHelper";
+import Constants from "../../utils/Constants";
 
 /**
  * @name TechnologyTable
@@ -15,7 +15,7 @@ import Constants from '../../utils/Constants';
  */
 const TechnologyTable = ({ technologies, setTechnologies }) => {
   const [view, setView] = useState(false);
-  const [mode, setMode] = useState('');
+  const [mode, setMode] = useState("");
   const [inputArr, setInputArr] = useState([]);
   const techArr = useMemo(() => technologies, [technologies]);
   const iconStyle = useMemo(() => ({ className: classes.reactIcon }), []);
@@ -30,22 +30,27 @@ const TechnologyTable = ({ technologies, setTechnologies }) => {
     const isVerified = await Common.verifyTokens();
 
     if (isVerified) {
-      await HttpHelper(`${Constants.TECH_ROUTE}/${tech._id}`, 'DELETE')
+      await HttpHelper(`${Constants.TECH_ROUTE}/${tech._id}`, "DELETE")
         .then((res) => {
           if (!res.ok) {
             throw new Error();
           }
         })
         .then(() => {
-          setTechnologies(techArr.filter((oldTech) => oldTech._id !== tech._id));
-          Common.showToast('Technology successfully deleted.', 'success');
+          setTechnologies(
+            techArr.filter((oldTech) => oldTech._id !== tech._id),
+          );
+          Common.showToast("Technology successfully deleted.", "success");
         })
         .catch(() => {
-          Common.showToast('There was an error deleteing technology. Please try again later.', 'error');
+          Common.showToast(
+            "There was an error deleteing technology. Please try again later.",
+            "error",
+          );
         });
     } else {
-      navigate('/login');
-      Common.showToast('Unauthorized access. Please Login', 'error');
+      navigate("/login");
+      Common.showToast("Unauthorized access. Please Login", "error");
     }
   };
 
@@ -54,17 +59,17 @@ const TechnologyTable = ({ technologies, setTechnologies }) => {
 
     const newInputArr = [];
     const name = {
-      title: 'Name',
-      name: 'name',
-      value: ''
+      title: "Name",
+      name: "name",
+      value: "",
     };
     const image = {
-      title: 'Image',
-      name: 'image',
-      value: ''
+      title: "Image",
+      name: "image",
+      value: "",
     };
 
-    if (newMode !== 'add') {
+    if (newMode !== "add") {
       name.value = tech.name;
       image.value = tech.image;
     }
@@ -101,44 +106,57 @@ const TechnologyTable = ({ technologies, setTechnologies }) => {
             </tr>
           </thead>
           <tbody>
-            {!!techArr.length && techArr.map((tech) => (
-              <tr key={tech._id}>
-                <td>
-                  <p>
-                    {tech._id}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    {tech.name}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    {tech.image}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <IconContext.Provider value={iconStyle}>
-                      <button className={classes.iconBtn} type="button" onClick={() => openModel(tech, 'edit')}><FaPencilAlt /></button>
-                    </IconContext.Provider>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <IconContext.Provider value={iconStyle}>
-                      <button className={classes.iconBtn} type="button" onClick={() => deleteTech(tech)}><FaTrashAlt /></button>
-                    </IconContext.Provider>
-                  </p>
-                </td>
-              </tr>
-            ))}
+            {!!techArr.length &&
+              techArr.map((tech) => (
+                <tr key={tech._id}>
+                  <td>
+                    <p>{tech._id}</p>
+                  </td>
+                  <td>
+                    <p>{tech.name}</p>
+                  </td>
+                  <td>
+                    <p>{tech.image}</p>
+                  </td>
+                  <td>
+                    <p>
+                      <IconContext.Provider value={iconStyle}>
+                        <button
+                          className={classes.iconBtn}
+                          type="button"
+                          onClick={() => openModel(tech, "edit")}
+                        >
+                          <FaPencilAlt />
+                        </button>
+                      </IconContext.Provider>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <IconContext.Provider value={iconStyle}>
+                        <button
+                          className={classes.iconBtn}
+                          type="button"
+                          onClick={() => deleteTech(tech)}
+                        >
+                          <FaTrashAlt />
+                        </button>
+                      </IconContext.Provider>
+                    </p>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
       <div className={classes.btnContainer}>
-        <button className={classes.addBtn} type="button" onClick={() => openModel({}, 'add')}>Add</button>
+        <button
+          className={classes.addBtn}
+          type="button"
+          onClick={() => openModel({}, "add")}
+        >
+          Add
+        </button>
       </div>
       <Model
         title="Experince"

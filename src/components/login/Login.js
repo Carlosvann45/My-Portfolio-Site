@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Cookies from 'universal-cookie';
-import Common from '../../utils/Common';
-import classes from './Login.module.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import Common from "../../utils/Common";
+import classes from "./Login.module.css";
 
 /**
  * @name Login
@@ -24,11 +24,11 @@ const Login = () => {
     const isLoggedIn = await Common.login(loginCreds);
 
     if (isLoggedIn) {
-      navigate('/admin');
+      navigate("/admin");
 
-      Common.showToast('Login Success.', 'success');
+      Common.showToast("Login Success.", "success");
     } else {
-      Common.showToast('Invalid login credentials.', 'error');
+      Common.showToast("Invalid login credentials.", "error");
     }
   };
 
@@ -42,7 +42,7 @@ const Login = () => {
 
     setLoginCreds({
       ...loginCreds,
-      [input.id]: input.value
+      [input.id]: input.value,
     });
   };
 
@@ -54,15 +54,15 @@ const Login = () => {
      * Handles checking if user is authorized
      */
     const checkIfAuthorized = async () => {
-      const cookies = new Cookies(null, { path: '/' });
-      const token = cookies.get('token');
-      const refreshToken = cookies.get('refresh_token');
+      const cookies = new Cookies(null, { path: "/" });
+      const token = cookies.get("token");
+      const refreshToken = cookies.get("refresh_token");
 
       if (token && refreshToken) {
         const isVerified = await Common.verifyTokens();
 
         if (isVerified) {
-          navigate('/admin');
+          navigate("/admin");
         }
       }
     };
@@ -102,10 +102,7 @@ const Login = () => {
           </div>
         </label>
         <div className={classes.btnContainer}>
-          <button
-            className={classes.submitBtn}
-            type="submit"
-          >
+          <button className={classes.submitBtn} type="submit">
             Submit
           </button>
         </div>

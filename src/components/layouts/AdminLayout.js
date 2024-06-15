@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import Cookies from 'universal-cookie';
-import Common from '../../utils/Common';
-import classes from './PageLayout.module.css';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import Common from "../../utils/Common";
+import classes from "./PageLayout.module.css";
+import "react-toastify/dist/ReactToastify.css";
 
 /**
  * @name AdminLayout
@@ -12,13 +12,13 @@ import 'react-toastify/dist/ReactToastify.css';
  */
 const AdminLayout = () => {
   const navigate = useNavigate();
-  const cookies = new Cookies(null, { path: '/' });
+  const cookies = new Cookies(null, { path: "/" });
 
   // hadnles checking if valid for user authorization
   useEffect(() => {
     const checkTokens = async () => {
-      const token = cookies.get('token');
-      const refreshToken = cookies.get('refresh_token');
+      const token = cookies.get("token");
+      const refreshToken = cookies.get("refresh_token");
       let isAuthorized = false;
 
       if (token && refreshToken) {
@@ -30,9 +30,9 @@ const AdminLayout = () => {
 
     checkTokens().then((isAuthorized) => {
       if (!isAuthorized) {
-        navigate('/login');
+        navigate("/login");
 
-        Common.showToast('Unauthorized access. Please Login', 'error');
+        Common.showToast("Unauthorized access. Please Login", "error");
       }
     });
   });

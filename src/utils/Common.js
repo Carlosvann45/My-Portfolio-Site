@@ -1,7 +1,7 @@
-import { toast } from 'react-toastify';
-import Cookies from 'universal-cookie';
-import HttpHelper from './HttpHelper';
-import Constants from './Constants';
+import { toast } from "react-toastify";
+import Cookies from "universal-cookie";
+import HttpHelper from "./HttpHelper";
+import Constants from "./Constants";
 
 /**
  * @name Common
@@ -9,7 +9,7 @@ import Constants from './Constants';
  */
 export default class Common {
   constructor() {
-    throw Error('Static class only');
+    throw Error("Static class only");
   }
 
   /**
@@ -20,23 +20,23 @@ export default class Common {
    */
   static showToast(message, type) {
     const options = {
-      position: 'top-center',
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnFocusLoss: true,
       pauseOnHover: true,
-      theme: 'colored'
+      theme: "colored",
     };
 
     switch (type) {
-      case 'success':
+      case "success":
         toast.success(message, options);
         break;
-      case 'warning':
+      case "warning":
         toast.warn(message, options);
         break;
-      case 'error':
+      case "error":
         toast.error(message, options);
         break;
       default:
@@ -53,17 +53,21 @@ export default class Common {
    * @returns boolean
    */
   static async login(credentials) {
-    const cookies = new Cookies(null, { path: '/' });
+    const cookies = new Cookies(null, { path: "/" });
     let loggedIn = true;
 
     try {
-      let response = await HttpHelper(Constants.LOGIN_ROUTE, 'POST', credentials);
+      let response = await HttpHelper(
+        Constants.LOGIN_ROUTE,
+        "POST",
+        credentials,
+      );
 
       response = await response.json();
 
       if (response.token && response.refreshToken) {
-        cookies.set('token', response.token);
-        cookies.set('refresh_token', response.refreshToken);
+        cookies.set("token", response.token);
+        cookies.set("refresh_token", response.refreshToken);
 
         return loggedIn;
       }
@@ -83,11 +87,11 @@ export default class Common {
    * @returns boolean
    */
   static async verifyTokens() {
-    const cookies = new Cookies(null, { path: '/' });
+    const cookies = new Cookies(null, { path: "/" });
     let isValid = true;
 
     try {
-      let response = await HttpHelper(Constants.VERIFY_TOKEN_ROUTE, 'GET');
+      let response = await HttpHelper(Constants.VERIFY_TOKEN_ROUTE, "GET");
 
       response = await response.json();
 
@@ -95,13 +99,13 @@ export default class Common {
         return isValid;
       }
 
-      response = await HttpHelper(Constants.REFRSH_ROUTE, 'GET', null, true);
+      response = await HttpHelper(Constants.REFRSH_ROUTE, "GET", null, true);
 
       response = await response.json();
 
       if (response.token && response.refreshToken) {
-        cookies.set('token', response.token);
-        cookies.set('refresh_token', response.refreshToken);
+        cookies.set("token", response.token);
+        cookies.set("refresh_token", response.refreshToken);
         return isValid;
       }
 

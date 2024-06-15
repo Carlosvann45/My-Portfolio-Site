@@ -1,12 +1,12 @@
-import React, { useMemo, useState } from 'react';
-import { FaEye, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
-import { IconContext } from 'react-icons';
-import { useNavigate } from 'react-router-dom';
-import Model from '../model/Model';
-import classes from './Table.module.css';
-import Common from '../../utils/Common';
-import HttpHelper from '../../utils/HttpHelper';
-import Constants from '../../utils/Constants';
+import React, { useMemo, useState } from "react";
+import { FaEye, FaPencilAlt, FaTrashAlt } from "react-icons/fa";
+import { IconContext } from "react-icons";
+import { useNavigate } from "react-router-dom";
+import Model from "../model/Model";
+import classes from "./Table.module.css";
+import Common from "../../utils/Common";
+import HttpHelper from "../../utils/HttpHelper";
+import Constants from "../../utils/Constants";
 
 /**
  * @name ExperinceTable
@@ -15,7 +15,7 @@ import Constants from '../../utils/Constants';
  */
 const ExperinceTable = ({ experinces, setExperinces }) => {
   const [view, setView] = useState(false);
-  const [mode, setMode] = useState('');
+  const [mode, setMode] = useState("");
   const [inputArr, setInputArr] = useState([]);
   const experinceArr = useMemo(() => experinces, [experinces]);
   const iconStyle = useMemo(() => ({ className: classes.reactIcon }), []);
@@ -30,23 +30,32 @@ const ExperinceTable = ({ experinces, setExperinces }) => {
     const isVerified = await Common.verifyTokens();
 
     if (isVerified) {
-      await HttpHelper(`${Constants.EXPERINCE_ROUTE}/${experience._id}`, 'DELETE')
+      await HttpHelper(
+        `${Constants.EXPERINCE_ROUTE}/${experience._id}`,
+        "DELETE",
+      )
         .then((res) => {
           if (!res.ok) {
             throw new Error();
           }
         })
         .then(() => {
-          setExperinces(experinceArr
-            .filter((oldExperience) => oldExperience._id !== experience._id));
-          Common.showToast('Experience successfully deleted.', 'success');
+          setExperinces(
+            experinceArr.filter(
+              (oldExperience) => oldExperience._id !== experience._id,
+            ),
+          );
+          Common.showToast("Experience successfully deleted.", "success");
         })
         .catch(() => {
-          Common.showToast('There was an error deleteing experience. Please try again later.', 'error');
+          Common.showToast(
+            "There was an error deleteing experience. Please try again later.",
+            "error",
+          );
         });
     } else {
-      navigate('/login');
-      Common.showToast('Unauthorized access. Please Login', 'error');
+      navigate("/login");
+      Common.showToast("Unauthorized access. Please Login", "error");
     }
   };
 
@@ -55,32 +64,32 @@ const ExperinceTable = ({ experinces, setExperinces }) => {
 
     const newInputArr = [];
     const company = {
-      title: 'Company',
-      name: 'company',
-      value: ''
+      title: "Company",
+      name: "company",
+      value: "",
     };
     const title = {
-      title: 'Title',
-      name: 'title',
-      value: ''
+      title: "Title",
+      name: "title",
+      value: "",
     };
     const startDate = {
-      title: 'Start Date',
-      name: 'startDate',
-      value: ''
+      title: "Start Date",
+      name: "startDate",
+      value: "",
     };
     const endDate = {
-      title: 'End Date',
-      name: 'endDate',
-      value: ''
+      title: "End Date",
+      name: "endDate",
+      value: "",
     };
     const descriptions = {
-      title: 'Descriptions',
-      name: 'descriptions',
-      value: ''
+      title: "Descriptions",
+      name: "descriptions",
+      value: "",
     };
 
-    if (newMode !== 'add') {
+    if (newMode !== "add") {
       company.value = experince.company;
       title.value = experince.title;
       startDate.value = experince.startDate;
@@ -89,15 +98,15 @@ const ExperinceTable = ({ experinces, setExperinces }) => {
     }
 
     switch (newMode) {
-      case 'add':
-      case 'edit':
+      case "add":
+      case "edit":
         newInputArr.push(company);
         newInputArr.push(title);
         newInputArr.push(startDate);
         newInputArr.push(endDate);
         newInputArr.push(descriptions);
         break;
-      case 'view':
+      case "view":
         newInputArr.push(descriptions);
         break;
       default:
@@ -142,61 +151,76 @@ const ExperinceTable = ({ experinces, setExperinces }) => {
             </tr>
           </thead>
           <tbody>
-            {!!experinceArr.length && experinceArr.map((experince) => (
-              <tr key={experince._id}>
-                <td>
-                  <p>
-                    {experince._id}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    {experince.company}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    {experince.title}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    {experince.startDate}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    {experince?.endDate}
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <IconContext.Provider value={iconStyle}>
-                      <button className={classes.iconBtn} type="button" onClick={() => openModel(experince, 'view')}><FaEye /></button>
-                    </IconContext.Provider>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <IconContext.Provider value={iconStyle}>
-                      <button className={classes.iconBtn} type="button" onClick={() => openModel(experince, 'edit')}><FaPencilAlt /></button>
-                    </IconContext.Provider>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    <IconContext.Provider value={iconStyle}>
-                      <button className={classes.iconBtn} type="button" onClick={() => deleteExperience(experince)}><FaTrashAlt /></button>
-                    </IconContext.Provider>
-                  </p>
-                </td>
-              </tr>
-            ))}
+            {!!experinceArr.length &&
+              experinceArr.map((experince) => (
+                <tr key={experince._id}>
+                  <td>
+                    <p>{experince._id}</p>
+                  </td>
+                  <td>
+                    <p>{experince.company}</p>
+                  </td>
+                  <td>
+                    <p>{experince.title}</p>
+                  </td>
+                  <td>
+                    <p>{experince.startDate}</p>
+                  </td>
+                  <td>
+                    <p>{experince?.endDate}</p>
+                  </td>
+                  <td>
+                    <p>
+                      <IconContext.Provider value={iconStyle}>
+                        <button
+                          className={classes.iconBtn}
+                          type="button"
+                          onClick={() => openModel(experince, "view")}
+                        >
+                          <FaEye />
+                        </button>
+                      </IconContext.Provider>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <IconContext.Provider value={iconStyle}>
+                        <button
+                          className={classes.iconBtn}
+                          type="button"
+                          onClick={() => openModel(experince, "edit")}
+                        >
+                          <FaPencilAlt />
+                        </button>
+                      </IconContext.Provider>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      <IconContext.Provider value={iconStyle}>
+                        <button
+                          className={classes.iconBtn}
+                          type="button"
+                          onClick={() => deleteExperience(experince)}
+                        >
+                          <FaTrashAlt />
+                        </button>
+                      </IconContext.Provider>
+                    </p>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
       <div className={classes.btnContainer}>
-        <button className={classes.addBtn} type="button" onClick={() => openModel({}, 'add')}>Add</button>
+        <button
+          className={classes.addBtn}
+          type="button"
+          onClick={() => openModel({}, "add")}
+        >
+          Add
+        </button>
       </div>
       <Model
         title="Experince"

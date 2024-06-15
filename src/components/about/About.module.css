@@ -140,7 +140,7 @@
 }
 
 .sliderTitle_tech:before {
-	content: "";
+	content: '';
 	display: block;
 	width: 25%;
 	height: 5px;
@@ -151,7 +151,7 @@
 	box-shadow: -.15em .1em .2em  black;
   }
   .sliderTitle_tech:after {
-	content: "";
+	content: '';
 	display: block;
 	width: 25%;
 	height: 5px;
@@ -248,7 +248,7 @@
 }
 
 .sliderTitle_code:before {
-	content: "";
+	content: '';
 	display: block;
 	width: 25%;
 	height: 5px;
@@ -259,7 +259,7 @@
 	box-shadow: -.15em .1em .2em  black;
   }
   .sliderTitle_code:after {
-	content: "";
+	content: '';
 	display: block;
 	width: 25%;
 	height: 5px;
@@ -367,7 +367,7 @@
 }
 
 .contactTitle:before {
-	content: "";
+	content: '';
 	display: block;
 	width: 25%;
 	height: 5px;
@@ -378,7 +378,7 @@
 	box-shadow: -.15em .1em .2em  black;
   }
   .contactTitle:after {
-	content: "";
+	content: '';
 	display: block;
 	width: 25%;
 	height: 5px;
@@ -772,7 +772,7 @@
 	}
 	
 	.sliderTitle_tech:before {
-		content: "";
+		content: '';
 		display: block;
 		width: 25%;
 		height: 5px;
@@ -783,7 +783,7 @@
 		box-shadow: -.15em .1em .2em  black;
 	  }
 	  .sliderTitle_tech:after {
-		content: "";
+		content: '';
 		display: block;
 		width: 25%;
 		height: 5px;
@@ -814,7 +814,7 @@
 	}
 	
 	.sliderTitle_code:before {
-		content: "";
+		content: '';
 		display: block;
 		width: 25%;
 		height: 5px;
@@ -825,7 +825,7 @@
 		box-shadow: -.15em .1em .2em  black;
 	  }
 	  .sliderTitle_code:after {
-		content: "";
+		content: '';
 		display: block;
 		width: 25%;
 		height: 5px;
@@ -856,7 +856,7 @@
 	}
 	
 	.contactTitle:before {
-		content: "";
+		content: '';
 		display: block;
 		width: 25%;
 		height: 5px;
@@ -867,7 +867,7 @@
 		box-shadow: -.15em .1em .2em  black;
 	  }
 	  .contactTitle:after {
-		content: "";
+		content: '';
 		display: block;
 		width: 25%;
 		height: 5px;
@@ -1044,7 +1044,7 @@
 	}
 	
 	.sliderTitle_tech:before {
-		content: "";
+		content: '';
 		display: block;
 		width: 20%;
 		height: 5px;
@@ -1055,7 +1055,7 @@
 		box-shadow: -.15em .1em .2em  black;
 	  }
 	  .sliderTitle_tech:after {
-		content: "";
+		content: '';
 		display: block;
 		width: 20%;
 		height: 5px;
@@ -1086,7 +1086,7 @@
 	}
 	
 	.sliderTitle_code:before {
-		content: "";
+		content: '';
 		display: block;
 		width: 20%;
 		height: 5px;
@@ -1097,7 +1097,7 @@
 		box-shadow: -.15em .1em .2em  black;
 	  }
 	  .sliderTitle_code:after {
-		content: "";
+		content: '';
 		display: block;
 		width: 20%;
 		height: 5px;
@@ -1128,7 +1128,7 @@
 	}
 	
 	.contactTitle:before {
-		content: "";
+		content: '';
 		display: block;
 		width: 20%;
 		height: 5px;
@@ -1140,7 +1140,7 @@
 	  }
 
 	  .contactTitle:after {
-		content: "";
+		content: '';
 		display: block;
 		width: 20%;
 		height: 5px;

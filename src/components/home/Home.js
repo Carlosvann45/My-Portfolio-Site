@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import classes from './Home.module.css';
+import React, { useState, useEffect } from "react";
+import classes from "./Home.module.css";
 
 /**
  * @name Home
@@ -9,7 +9,12 @@ import classes from './Home.module.css';
 const Home = () => {
   const [reverse, setReverse] = useState(false);
   const [wordChanged, setWordChanged] = useState(true);
-  const [words] = useState(['Engineer', 'Musician', 'Designer', 'Entrepreneur']);
+  const [words] = useState([
+    "Engineer",
+    "Musician",
+    "Designer",
+    "Entrepreneur",
+  ]);
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
 
@@ -26,9 +31,7 @@ const Home = () => {
     }
 
     // if title is fully visible start to delete text
-    if (
-      subIndex === words[index].length + 1 && !reverse
-    ) {
+    if (subIndex === words[index].length + 1 && !reverse) {
       setTimeout(() => {
         setReverse(true);
       }, 1000);
@@ -46,18 +49,19 @@ const Home = () => {
 
     // handles removing an index or adding index
     // to display the text
-    setTimeout(() => {
-      setSubIndex(subIndex + (reverse ? -1 : 1));
-    }, reverse ? 100 : 175);
+    setTimeout(
+      () => {
+        setSubIndex(subIndex + (reverse ? -1 : 1));
+      },
+      reverse ? 100 : 175,
+    );
     /**  */
   }, [index, words, subIndex, reverse, wordChanged]);
 
   return (
     <div className={classes.homePageContainer}>
       <h2 className={classes.homeTitle}>
-        I&apos;m a
-        {' '}
-        <span>{words[index].substring(0, subIndex)}</span>
+        I&apos;m a <span>{words[index].substring(0, subIndex)}</span>
       </h2>
       <div className={classes.boxes}>
         <div />

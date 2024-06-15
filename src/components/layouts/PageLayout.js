@@ -1,9 +1,9 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import Header from '../header/Header';
-import classes from './PageLayout.module.css';
-import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import Header from "../header/Header";
+import classes from "./PageLayout.module.css";
+import "react-toastify/dist/ReactToastify.css";
 
 /**
  * @name PageLayout

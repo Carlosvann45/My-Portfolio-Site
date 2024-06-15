@@ -1,6 +1,6 @@
-import React from 'react';
-import classes from './NotFound.module.css';
-import Logo from '../images/not-found.png';
+import React from "react";
+import classes from "./NotFound.module.css";
+import Logo from "../images/not-found.png";
 
 /**
  * @name NotFound
